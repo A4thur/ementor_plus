@@ -31,6 +31,10 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 
 public class PDFGenerator {
+    private DefaultTableModel tableModel;
+    public PDFGenerator(DefaultTableModel Tabela) {
+        this.tableModel = Tabela;
+    }
     public void exportTableModelToPDF(DefaultTableModel tableModel, String fileName) throws IOException {
         // Cria uma JTable a partir do DefaultTableModel
         JTable table = new JTable(tableModel);

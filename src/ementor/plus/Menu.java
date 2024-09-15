@@ -22,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+       
     }
 
     /**
@@ -185,58 +186,44 @@ public class Menu extends javax.swing.JFrame {
         TableProfessor professores = new TableProfessor();
         professores.setVisible(true);
     }//GEN-LAST:event_botaoListarProfessorActionPerformed
-    public static void initializeTable() {
-        // Define o modelo da tabela
-        DefaultTableModel model = new DefaultTableModel(
-            new Object[]{"Nome", "CPF", "Data Nascimento", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Data Admissao", "Chefia", "Coordenacao"},
-            0
-        );
-        TableProfessor.TabelaProfessor.setModel(model);
-    }
-    private void PDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PDFActionPerformed
-        ArrayList<Professor> ListaProfessores = new ArrayList<>();
+                               
     
-    // Inicializa a busca de professores
-    Professor busca = new Professor();
-    ListaProfessores = busca.mostrarProfessor();
-    TableProfessor.initializeTable();
-
-    // Verifica se a tabela foi inicializada
-    if (TableProfessor.TabelaProfessor.getModel() instanceof DefaultTableModel) {
+    private void PDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PDFActionPerformed
+        ArrayList <Professor> ListaProfessores = new ArrayList(); 
+        
+        Professor busca = new Professor();
+        ListaProfessores = busca.mostrarProfessor();
+        
         DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
-
-        // Limpa a tabela antes de adicionar novos dados
-        Tabela.setRowCount(0);
-
-        // Adiciona os dados dos professores à tabela
-        for (Professor obj : ListaProfessores) {
-            Tabela.addRow(new Object[]{
-                obj.nome,
-                obj.cpf,
-                obj.dataNascimento,
-                obj.telefone,
-                obj.rua,
-                obj.bairro,
-                obj.cidade,
-                obj.estado,
-                obj.getDataAdmissao(),
-                obj.getChefia(),
-                obj.getCoordenacao(),
-                obj.getChefia()
-            });
+        for(Professor obj: ListaProfessores) {
+            Tabela.addRow(new Object[] {obj.nome, 
+                                        obj.cpf, 
+                                        obj.dataNascimento,
+                                        obj.telefone,
+                                        obj.rua,
+                                        obj.bairro,
+                                        obj.cidade,
+                                        obj.estado, 
+                                        obj.getDataAdmissao(),
+                                        obj.getChefia(),
+                                        obj.getCoordenacao(),
+                                        obj.getChefia()});
         }
 
-        // Gera o PDF com os dados da tabela
-        PDFGenerator pdf = new PDFGenerator();
+
+    
+
+    
+        PDFGenerator pdf = new PDFGenerator(Tabela); // Passa o DefaultTableModel para o construtor
         try {
-            pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
+pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
         } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "PDF gerado com sucesso!");
-    } else {
         JOptionPane.showMessageDialog(null, "Tabela ou modelo não inicializados.");
-    }
+
+
     }//GEN-LAST:event_PDFActionPerformed
 
     /**

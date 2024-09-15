@@ -23,6 +23,11 @@ public class TabelaAlunos extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        
+    }
+    public void TelaCheia(){
+        setExtendedState(MAXIMIZED_BOTH);
+        setUndecorated(true); 
     }
 
     /**
@@ -67,24 +72,18 @@ public class TabelaAlunos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1477, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1489, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TableAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAlunoMouseClicked
-        editOrDelete op = new editOrDelete();
+        editOrDeleteAluno op = new editOrDeleteAluno();
         op.setVisible(true);
     }//GEN-LAST:event_TableAlunoMouseClicked
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
@@ -107,7 +106,7 @@ public class TabelaAlunos extends javax.swing.JFrame {
                                         obj.getMatricula(),
                                         obj.getPeriodo()});
         }
-        
+        TelaCheia();
         
     }   
     /**

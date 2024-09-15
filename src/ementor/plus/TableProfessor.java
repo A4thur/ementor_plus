@@ -24,6 +24,10 @@ public class TableProfessor extends javax.swing.JFrame {
             }
         });
     }
+    public void TelaCheia(){
+        setExtendedState(MAXIMIZED_BOTH);
+        setUndecorated(true); 
+    }
     public static void initializeTable() {
         // Definindo as colunas e os dados iniciais da tabela
         DefaultTableModel model = new DefaultTableModel(
@@ -62,15 +66,11 @@ public class TableProfessor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1227, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 145, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -97,11 +97,14 @@ public class TableProfessor extends javax.swing.JFrame {
                                         obj.getChefia()});
         }
         
-        
+        TelaCheia();
     }   
     /**
      * @param args the command line arguments
      */
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

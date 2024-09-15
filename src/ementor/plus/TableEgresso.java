@@ -19,6 +19,10 @@ public class TableEgresso extends javax.swing.JFrame {
     public TableEgresso() {
         initComponents();
     }
+    public void TelaCheia(){
+        setExtendedState(MAXIMIZED_BOTH);
+        setUndecorated(true); 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,16 +53,11 @@ public class TableEgresso extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1594, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(398, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -83,7 +82,10 @@ public class TableEgresso extends javax.swing.JFrame {
                                         obj.getChefia(),
                                         obj.getCoordenacao(),
                                         obj.getChefia()});
-        }*/
+ 
+        }
+    TelaCheia();
+}
         
         
      
