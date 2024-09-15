@@ -4,6 +4,9 @@
  */
 package ementor.plus;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aluno
@@ -39,6 +42,7 @@ public class TableEgresso extends javax.swing.JFrame {
                 "Nome", "Data de Nascimento", "CPF", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Estado", "Matrícula", "Período", "Turma", "Notas", "Profissão Atual", "Faixa Salarial", "Curso Anterior", "Curso Atual"
             }
         ));
+        TableEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(TableEgresso);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -59,7 +63,30 @@ public class TableEgresso extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /*private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+        ArrayList <Egresso> ListaEgressos = new ArrayList(); 
+        
+        Egresso busca = new Egresso();
+        ListaEgressos = busca.mostrarEgressos();
+        
+        DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
+        for(Professor obj: ListaProfessores) {
+            Tabela.addRow(new Object[] {obj.nome, 
+                                        obj.cpf, 
+                                        obj.dataNascimento,
+                                        obj.telefone,
+                                        obj.rua,
+                                        obj.bairro,
+                                        obj.cidade,
+                                        obj.estado, 
+                                        obj.getDataAdmissao(),
+                                        obj.getChefia(),
+                                        obj.getCoordenacao(),
+                                        obj.getChefia()});
+        }*/
+        
+        
+     
     /**
      * @param args the command line arguments
      */

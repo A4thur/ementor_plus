@@ -24,6 +24,14 @@ public class TableProfessor extends javax.swing.JFrame {
             }
         });
     }
+    public static void initializeTable() {
+        // Definindo as colunas e os dados iniciais da tabela
+        DefaultTableModel model = new DefaultTableModel(
+            new Object[]{"Nome", "CPF", "Data Nascimento", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Data Admissao", "Chefia", "Coordenacao"},
+            0
+        );
+        TabelaProfessor.setModel(model);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +55,7 @@ public class TableProfessor extends javax.swing.JFrame {
                 "Nome ", "Data de Nascimento", "CPF", "Telefone", "Rua", "Rua", "Bairro", "Cidade", "Estado", "Data de Admissão", "Chefia", "Coordenação", "Salário Bruto"
             }
         ));
+        TabelaProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(TabelaProfessor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

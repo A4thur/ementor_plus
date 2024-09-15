@@ -37,7 +37,7 @@ public class TabelaAlunos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableAluno = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         TableAluno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -53,6 +53,12 @@ public class TabelaAlunos extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        TableAluno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TableAluno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableAlunoMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(TableAluno);
@@ -76,8 +82,14 @@ public class TabelaAlunos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TableAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAlunoMouseClicked
+        editOrDelete op = new editOrDelete();
+        op.setVisible(true);
+    }//GEN-LAST:event_TableAlunoMouseClicked
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         ArrayList <Aluno> ListaAlunos = new ArrayList(); 
+        
         
         Aluno busca = new Aluno();
         ListaAlunos = busca.mostrarAlunos();

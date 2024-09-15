@@ -63,7 +63,6 @@ public class Usuario extends Pessoa {
         busca.addItem("nome", Usuario);
         busca.addItem("senha", Senha);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
-        System.out.println(Resposta.get(0).getVarchar("nome"));
         if(Resposta.isEmpty()){
             return null;
         }

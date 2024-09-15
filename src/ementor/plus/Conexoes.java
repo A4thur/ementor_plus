@@ -86,9 +86,6 @@ public class Conexoes {
             
             conexao.commit();
             
-            String message = info.getTabela()+" inserido com sucesso";
-            
-            JOptionPane.showMessageDialog(null,message,"Inserir",JOptionPane.INFORMATION_MESSAGE);
             
         }catch(SQLException e){
             if (conexao != null) {
@@ -182,9 +179,6 @@ public class Conexoes {
             
             conexao.commit();
             
-            String message = info.getTabela()+" Atualizado com sucesso";
-            
-            JOptionPane.showMessageDialog(null,message,"Atualizar",JOptionPane.INFORMATION_MESSAGE);
             
         }catch(SQLException e){
             if (conexao != null) {
@@ -260,9 +254,7 @@ public class Conexoes {
             // Confirmar a transação
             conexao.commit();
             
-            String message = busca.getTabela()+" Excluido com sucesso";
-            
-            JOptionPane.showMessageDialog(null,message,"Excluir",JOptionPane.INFORMATION_MESSAGE);
+        
 
         }catch(SQLException e){
             if (conexao != null) {
@@ -373,9 +365,7 @@ public class Conexoes {
             // Confirmar a transação
             conexao.commit();
             
-            String message = busca.getTabela()+" Busca concluida com sucesso";
             
-            JOptionPane.showMessageDialog(null,message,"Busca",JOptionPane.INFORMATION_MESSAGE);
 
         }catch(SQLException e){
             if (conexao != null) {
@@ -470,9 +460,7 @@ public class Conexoes {
             // Confirmar a transação
             conexao.commit();
             
-            String message = Tabela+" Busca concluida com sucesso";
-            
-            JOptionPane.showMessageDialog(null,message,"Busca",JOptionPane.INFORMATION_MESSAGE);
+           
 
         }catch(SQLException e){
             if (conexao != null) {
