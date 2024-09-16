@@ -34,147 +34,174 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botaoListarAlunos = new javax.swing.JButton();
-        botaoCadastrarAluno = new javax.swing.JButton();
-        botaoAlterarProfessor = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        botaoCadastrarAluno = new javax.swing.JButton();
+        botaoListarAlunos = new javax.swing.JButton();
+        botaoCadastrarTurma = new javax.swing.JButton();
+        botaoListarTurma = new javax.swing.JButton();
+        botaoListarProfessor = new javax.swing.JButton();
         botaoCadastrarProfessor = new javax.swing.JButton();
         botaoCadastrarEgresso = new javax.swing.JButton();
-        botaoAlterarAluno = new javax.swing.JButton();
-        botaoAlterarEgresso = new javax.swing.JButton();
-        botaoListarProfessor = new javax.swing.JButton();
         botaoListarEgresso = new javax.swing.JButton();
-        botaoCadastrarTurma = new javax.swing.JButton();
-        botaoAlterarTurma = new javax.swing.JButton();
-        botaoListarTurma = new javax.swing.JButton();
         PDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel1.setText("Menu");
+
+        botaoCadastrarAluno.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarAluno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrarAluno.setLabel("Cadastrar Aluno");
+        botaoCadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarAlunoActionPerformed(evt);
+            }
+        });
+
+        botaoListarAlunos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoListarAlunos.setText("Listar Alunos");
+        botaoListarAlunos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoListarAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarAlunosActionPerformed(evt);
             }
         });
 
-        botaoCadastrarAluno.setLabel("Cadastrar Aluno");
+        botaoCadastrarTurma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarTurma.setText("Cadastrar Turma");
+        botaoCadastrarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        botaoAlterarProfessor.setText("Alterar Professor");
+        botaoListarTurma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoListarTurma.setText("Listar Turma");
+        botaoListarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoListarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoListarTurmaActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Menu");
-
-        botaoCadastrarProfessor.setText("Cadastrar Professor");
-
-        botaoCadastrarEgresso.setText("Cadastrar Egresso");
-
-        botaoAlterarAluno.setText("Alterar Aluno");
-
-        botaoAlterarEgresso.setText("Alterar Egresso");
-
+        botaoListarProfessor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoListarProfessor.setText("Listar Professor");
+        botaoListarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoListarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarProfessorActionPerformed(evt);
             }
         });
 
+        botaoCadastrarProfessor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarProfessor.setText("Cadastrar Professor");
+        botaoCadastrarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarProfessorActionPerformed(evt);
+            }
+        });
+
+        botaoCadastrarEgresso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarEgresso.setText("Cadastrar Egresso");
+        botaoCadastrarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrarEgresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarEgressoActionPerformed(evt);
+            }
+        });
+
+        botaoListarEgresso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoListarEgresso.setText("Listar Egresso");
+        botaoListarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoListarEgresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoListarEgressoActionPerformed(evt);
+            }
+        });
 
-        botaoCadastrarTurma.setText("Cadastrar Turma");
-
-        botaoAlterarTurma.setText("Alterar Turma");
-
-        botaoListarTurma.setText("Listar Turma");
-
+        PDF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         PDF.setText("PDF ALUNO");
+        PDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PDFActionPerformed(evt);
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botaoListarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoListarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botaoCadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoCadastrarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botaoListarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botaoListarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botaoCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botaoCadastrarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(310, 310, 310)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCadastrarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCadastrarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoListarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botaoListarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoListarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoListarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botaoListarProfessor)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 228, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addContainerGap(302, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botaoListarTurma)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoListarAlunos)
-                            .addComponent(botaoListarEgresso)
-                            .addComponent(botaoAlterarTurma))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoCadastrarProfessor)
-                            .addComponent(botaoCadastrarAluno)
-                            .addComponent(botaoCadastrarEgresso)
-                            .addComponent(botaoCadastrarTurma)
-                            .addComponent(PDF))
-                        .addGap(112, 112, 112))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botaoAlterarAluno)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoAlterarProfessor)
-                            .addComponent(botaoAlterarEgresso))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addComponent(botaoListarTurma)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoListarProfessor)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoListarEgresso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoListarAlunos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(botaoCadastrarAluno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoCadastrarProfessor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoCadastrarEgresso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoCadastrarTurma)
-                        .addGap(2, 2, 2)))
-                .addComponent(botaoAlterarAluno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoAlterarProfessor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoAlterarEgresso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAlterarTurma)
-                    .addComponent(PDF))
-                .addGap(41, 41, 41))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoListarAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoListarAlunosActionPerformed
@@ -226,6 +253,30 @@ pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
 
     }//GEN-LAST:event_PDFActionPerformed
 
+    private void botaoListarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoListarTurmaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoListarTurmaActionPerformed
+
+    private void botaoCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarAlunoActionPerformed
+        CadastroAluno aluno = new CadastroAluno();
+        aluno.setVisible(true);
+    }//GEN-LAST:event_botaoCadastrarAlunoActionPerformed
+
+    private void botaoCadastrarEgressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarEgressoActionPerformed
+        CadastroEgresso egresso = new CadastroEgresso();
+        egresso.setVisible(true);
+    }//GEN-LAST:event_botaoCadastrarEgressoActionPerformed
+
+    private void botaoCadastrarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarProfessorActionPerformed
+        CadastroProfessor professor = new CadastroProfessor();
+        professor.setVisible(true);
+    }//GEN-LAST:event_botaoCadastrarProfessorActionPerformed
+
+    private void botaoListarEgressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoListarEgressoActionPerformed
+        TableEgresso tableEgresso = new TableEgresso();
+        tableEgresso.setVisible(true);
+    }//GEN-LAST:event_botaoListarEgressoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -263,10 +314,6 @@ pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton PDF;
-    private javax.swing.JButton botaoAlterarAluno;
-    private javax.swing.JButton botaoAlterarEgresso;
-    private javax.swing.JButton botaoAlterarProfessor;
-    private javax.swing.JButton botaoAlterarTurma;
     private javax.swing.JButton botaoCadastrarAluno;
     private javax.swing.JButton botaoCadastrarEgresso;
     private javax.swing.JButton botaoCadastrarProfessor;
@@ -276,5 +323,6 @@ pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
     private javax.swing.JButton botaoListarProfessor;
     private javax.swing.JButton botaoListarTurma;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

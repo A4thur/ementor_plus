@@ -59,7 +59,12 @@ public class TableProfessor extends javax.swing.JFrame {
                 "Nome ", "Data de Nascimento", "CPF", "Telefone", "Rua", "Rua", "Bairro", "Cidade", "Estado", "Data de Admissão", "Chefia", "Coordenação", "Salário Bruto"
             }
         ));
-        TabelaProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TabelaProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TabelaProfessor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelaProfessorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TabelaProfessor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -75,6 +80,11 @@ public class TableProfessor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TabelaProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaProfessorMouseClicked
+        editOrDeleteProfessor p = new editOrDeleteProfessor();
+        p.setVisible(true);
+    }//GEN-LAST:event_TabelaProfessorMouseClicked
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         ArrayList <Professor> ListaProfessores = new ArrayList(); 
         

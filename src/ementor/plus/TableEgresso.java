@@ -46,7 +46,12 @@ public class TableEgresso extends javax.swing.JFrame {
                 "Nome", "Data de Nascimento", "CPF", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Estado", "Matrícula", "Período", "Turma", "Notas", "Profissão Atual", "Faixa Salarial", "Curso Anterior", "Curso Atual"
             }
         ));
-        TableEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TableEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TableEgresso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableEgressoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableEgresso);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -62,6 +67,11 @@ public class TableEgresso extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TableEgressoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableEgressoMouseClicked
+        editOrDeleteEgresso p = new editOrDeleteEgresso();
+        p.setVisible(true);
+    }//GEN-LAST:event_TableEgressoMouseClicked
     /*private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         ArrayList <Egresso> ListaEgressos = new ArrayList(); 
         

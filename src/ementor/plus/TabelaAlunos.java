@@ -83,8 +83,8 @@ public class TabelaAlunos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TableAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAlunoMouseClicked
-        editOrDeleteAluno op = new editOrDeleteAluno();
-        op.setVisible(true);
+        editOrDeleteAluno p = new editOrDeleteAluno();
+        p.setVisible(true);
     }//GEN-LAST:event_TableAlunoMouseClicked
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         ArrayList <Aluno> ListaAlunos = new ArrayList(); 
