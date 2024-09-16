@@ -140,7 +140,7 @@ public class Professor extends Pessoa{
         Dados busca = new Dados("professor");
         busca.addItem("pessoaCPF", CPF);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
-        ArrayList<Pessoa> pessoas = this.mostrarPessoas(CPF);
+        
         
         ArrayList<Professor> professores = new ArrayList<Professor>();
         for(int i = 0; i<Resposta.size(); i++){
@@ -149,6 +149,7 @@ public class Professor extends Pessoa{
             professor.setChefia(Resposta.get(i).getBool("chefia"));
             professor.setCoordenacao(Resposta.get(i).getBool("coordenacao"));
             professor.setSalario(Resposta.get(i).getFloat("salarioBruto"));
+            ArrayList<Pessoa> pessoas = this.mostrarPessoas(Resposta.get(i).getVarchar("pessoaCPF"));
             professor.setPessoa(pessoas.get(i));
             professores.add(professor);
         }
@@ -159,6 +160,7 @@ public class Professor extends Pessoa{
         Conexoes banco = new Conexoes();
         ArrayList<Dados> Resposta = banco.mostrarSQL("professor");
         
+        
         ArrayList<Professor> professores = new ArrayList<Professor>();
         for(int i = 0; i<Resposta.size(); i++){
             Professor professor = new Professor();
@@ -166,7 +168,7 @@ public class Professor extends Pessoa{
             professor.setChefia(Resposta.get(i).getBool("chefia"));
             professor.setCoordenacao(Resposta.get(i).getBool("coordenacao"));
             professor.setSalario(Resposta.get(i).getFloat("salarioBruto"));
-            ArrayList<Pessoa> pessoas = this.mostrarPessoas(Resposta.get(i).getVarchar("pessoaCPF"));
+            ArrayList<Pessoa> pessoas = this.mostrarPessoas(Resposta.get(0).getVarchar("pessoaCPF"));
             professor.setPessoa(pessoas.get(0));
             professores.add(professor);
         }
