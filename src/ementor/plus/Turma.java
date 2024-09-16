@@ -4,6 +4,11 @@
  */
 package ementor.plus;
 
+import ementor.plus.LogErros.SQLDuplicateException;
+import ementor.plus.LogErros.SQLPresencaException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
@@ -57,6 +62,78 @@ public class Turma {
 
     public void setnAvaliacoes(int nAvaliacoes) {
         this.nAvaliacoes = nAvaliacoes;
+    }
+    
+    public void inserir(){
+        try{
+            if(this.verificaTurma(this.codigo)) throw new SQLDuplicateException();
+            Professor professor = new Professor();
+            if(!professor.verificaProfessor(this.professorResponsvel)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados turma = new Dados("turma");
+            turma.addItem("nome", this.nome);
+            turma.addItem("professorCPF", this.professorResponsvel);
+            turma.addItem("numAvaliacoes", this.nAvaliacoes);
+            turma.addItem("codigo", this.codigo);
+            banco.insereSQL(turma);
+        }catch(SQLDuplicateException | SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void atualizar(String Codigo){
+        try{
+            if(!this.verificaTurma(Codigo)) throw new SQLPresencaException();
+            Professor professor = new Professor();
+            if(!professor.verificaProfessor(this.professorResponsvel)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados turma = new Dados("turma");
+            Dados busca = new Dados("turma");
+            turma.addItem("nome", this.nome);
+            turma.addItem("professorCPF", this.professorResponsvel);
+            turma.addItem("numAvaliacoes", this.nAvaliacoes);
+            turma.addItem("codigo", this.codigo);
+            busca.addItem("codigo", Codigo);
+            banco.atualizaSQL(turma, busca);
+        }catch(SQLDuplicateException | SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void exclui(String Codigo){
+        try{
+            if(!this.verificaTurma(Codigo)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados busca = new Dados("turma");
+            busca.addItem("codigo", Codigo);
+            banco.exclusaoSQL(busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void mostraTurma(String codigo){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("turma");
+        busca.addItem("codigo", codigo);
+        ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
+        try{
+            if(Resposta.isEmpty()) throw new SQLPresencaException();
+            this.setCodigo(Resposta.get(0).getVarchar("codigo"));
+            this.setNome(Resposta.get(0).getVarchar("nome"));
+            this.setProfessorResponsvel(Resposta.get(0).getVarchar("professorCPF"));
+            this.setnAvaliacoes(Resposta.get(0).getInt("numAvaliacoes"));
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public boolean verificaTurma(String Codigo){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("turma");
+        busca.addItem("codigo", Codigo);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
     }
     
 }

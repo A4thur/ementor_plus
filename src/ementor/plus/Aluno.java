@@ -4,7 +4,10 @@
  */
 package ementor.plus;
 
+import ementor.plus.LogErros.SQLDuplicateException;
+import ementor.plus.LogErros.SQLPresencaException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,15 +66,11 @@ public class Aluno extends Pessoa {
         this.periodo = periodo;
     }
     
-    public void setPessoa(Pessoa pessoa){
-        this.nome = pessoa.nome;
-        this.dataNascimento = pessoa.dataNascimento;
-        this.cpf = pessoa.cpf;
-        this.telefone = pessoa.telefone;
-        this.rua = pessoa.rua;
-        this.bairro = pessoa.bairro;
-        this.cidade = pessoa.cidade;
-        this.estado = pessoa.estado;
+    public void setAluno(Aluno aluno){
+        this.setMatricula(aluno.getMatricula());
+        this.setPeriodo(aluno.getPeriodo());
+        this.setFinalizado(aluno.isFinalizado());
+        this.setTurma(aluno.getTurma());
     }
     
     public void imprimir(){
@@ -83,34 +82,49 @@ public class Aluno extends Pessoa {
     }
     
     public void inserir(){
-        super.inserir();
-        Conexoes banco = new Conexoes();
-        Dados aluno = new Dados("aluno");
-        aluno.addItem("matricula", this.matricula);
-        aluno.addItem("periodo", this.periodo);
-        aluno.addItem("finalizado", this.finalizado);
-        aluno.addItem("pessoaCPF", this.getCpf());
-        banco.insereSQL(aluno);
+        try{
+            if(this.verificaAluno(this.cpf)) throw new SQLDuplicateException();
+            super.inserir();
+            Conexoes banco = new Conexoes();
+            Dados aluno = new Dados("aluno");
+            aluno.addItem("matricula", this.matricula);
+            aluno.addItem("periodo", this.periodo);
+            aluno.addItem("finalizado", this.finalizado);
+            aluno.addItem("pessoaCPF", this.getCpf());
+            banco.insereSQL(aluno);
+        }catch(SQLDuplicateException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void atualiza(String CPF){
-        super.atualiza(CPF);
-        Conexoes banco = new Conexoes();
-        Dados aluno = new Dados("aluno");
-        Dados busca = new Dados("aluno");
-        aluno.addItem("matricula", this.matricula);
-        aluno.addItem("periodo", this.periodo);
-        aluno.addItem("finalizado", this.finalizado);
-        busca.addItem("pessoaCPF", CPF);
-        banco.atualizaSQL(aluno, busca);
+        try{
+            if(!this.verificaAluno(CPF)) throw new SQLPresencaException();
+            super.atualiza(CPF);
+            Conexoes banco = new Conexoes();
+            Dados aluno = new Dados("aluno");
+            Dados busca = new Dados("aluno");
+            aluno.addItem("matricula", this.matricula);
+            aluno.addItem("periodo", this.periodo);
+            aluno.addItem("finalizado", this.finalizado);
+            busca.addItem("pessoaCPF", CPF);
+            banco.atualizaSQL(aluno, busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void exclui(String CPF){
-        Conexoes banco = new Conexoes();
-        Dados busca = new Dados("aluno");
-        busca.addItem("pessoaCPF", CPF);
-        banco.exclusaoSQL(busca);
-        super.exclui(CPF);
+        try{
+            if(!this.verificaAluno(CPF)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados busca = new Dados("aluno");
+            busca.addItem("pessoaCPF", CPF);
+            banco.exclusaoSQL(busca);
+            super.exclui(CPF);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public ArrayList<Aluno> mostrarAlunos(String CPF){
@@ -147,5 +161,13 @@ public class Aluno extends Pessoa {
             alunos.add(aluno);
         }
         return alunos;
+    }
+    
+    public boolean verificaAluno(String CPF){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("aluno");
+        busca.addItem("pessoaCPF", CPF);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
     }
 }

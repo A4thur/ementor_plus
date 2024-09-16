@@ -22,7 +22,7 @@ public class Conexoes {
     private final String porta = "3306"; //Porta padrão de Conexão do MySQL Server
     private final String nome = "ementor_plus"; //Nome da nossa base de dados
     private final String usuario = "root"; //Usuario padrão do MySQL
-    private final String senha = "123456"; // Senha definida no momento da instalação do MySQL
+    private final String senha = ""; // Senha definida no momento da instalação do MySQL
     private final String FusoHorario = "?useTimezone=true&serverTimezone=UTC";
     private final String URL ="jdbc:mysql://"+caminho+":"+porta+"/"+nome+FusoHorario; //Ajusta o fuso horário em relação a sede da Oracle 
     
@@ -490,5 +490,167 @@ public class Conexoes {
             }
         }
         return Resposta;
+    }
+    
+    public int mostrarSQLId(Dados busca){
+        Connection conexao = null;
+        PreparedStatement Atuador = null;
+        ArrayList<String> NamesBusca = busca.getNames();
+        String sql = "SELECT id FROM " + busca.getTabela() + " WHERE ";
+        
+        int resposta = 0;
+        
+        
+        for(int i = 0; i<busca.length();i++){
+            sql = sql.concat(NamesBusca.get(i) + " = ?");
+            if(i<(busca.length()-1)){
+                sql = sql.concat(" AND ");
+            }
+        }
+        
+        try {
+            conexao = realizaConexaoMySQL(); // Estabelece conexão
+
+            // Desativar auto-commit para gerenciar a transação manualmente
+            conexao.setAutoCommit(false);
+            
+            Atuador = conexao.prepareStatement(sql);
+            
+            for(int i = 0; i<busca.length();i++){
+                if(busca.getTypes().get(i).equals("String")){
+                    Atuador.setString(i+1, busca.getVarchar(i));
+                }
+                if(busca.getTypes().get(i).equals("int")){
+                    Atuador.setInt(i+1, busca.getInt(i));
+                }
+                if(busca.getTypes().get(i).equals("float")){
+                    Atuador.setFloat(i+1, busca.getFloat(i));
+                }
+                if(busca.getTypes().get(i).equals("boolean")){
+                    Atuador.setBoolean(i+1, busca.getBool(i));
+                }
+            }
+            
+            ResultSet Resultado = Atuador.executeQuery();
+            
+            if(Resultado.next()){
+                resposta = Resultado.getInt("id");
+            }
+            
+            // Confirmar a transação
+            conexao.commit();
+            
+            
+
+        }catch(SQLException e){
+            if (conexao != null) {
+                try {
+                    conexao.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            // Fechamento dos recursos
+            if (Atuador != null) {
+                try {
+                    Atuador.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conexao != null) {
+                try {
+                    conexao.setAutoCommit(true); // Restaura o modo de auto-commit
+                    desconectaMySQL(conexao); // Fecha a conexão do Banco de Dados
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return resposta;
+    }
+    
+    public boolean verificaOcorrencia(Dados busca){
+        Connection conexao = null;
+        PreparedStatement Atuador = null;
+        ArrayList<String> NamesBusca = busca.getNames();
+        String sql = "SELECT EXISTS (SELECT 1 FROM ementor_plus." + busca.getTabela() + " WHERE ";
+        
+        boolean resposta = false;
+        
+        
+        for(int i = 0; i<busca.length();i++){
+            sql = sql.concat(NamesBusca.get(i) + " = ?");
+            if(i<(busca.length()-1)){
+                sql = sql.concat(" AND ");
+            }
+        }
+        
+        sql = sql.concat(")");
+        
+        try {
+            conexao = realizaConexaoMySQL(); // Estabelece conexão
+
+            // Desativar auto-commit para gerenciar a transação manualmente
+            conexao.setAutoCommit(false);
+            
+            Atuador = conexao.prepareStatement(sql);
+            
+            for(int i = 0; i<busca.length();i++){
+                if(busca.getTypes().get(i).equals("String")){
+                    Atuador.setString(i+1, busca.getVarchar(i));
+                }
+                if(busca.getTypes().get(i).equals("int")){
+                    Atuador.setInt(i+1, busca.getInt(i));
+                }
+                if(busca.getTypes().get(i).equals("float")){
+                    Atuador.setFloat(i+1, busca.getFloat(i));
+                }
+                if(busca.getTypes().get(i).equals("boolean")){
+                    Atuador.setBoolean(i+1, busca.getBool(i));
+                }
+            }
+            
+            ResultSet Resultado = Atuador.executeQuery();
+            
+            if(Resultado.next()){
+                resposta = Resultado.getBoolean(1);
+            }
+            
+            // Confirmar a transação
+            conexao.commit();
+            
+            
+
+        }catch(SQLException e){
+            if (conexao != null) {
+                try {
+                    conexao.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            // Fechamento dos recursos
+            if (Atuador != null) {
+                try {
+                    Atuador.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conexao != null) {
+                try {
+                    conexao.setAutoCommit(true); // Restaura o modo de auto-commit
+                    desconectaMySQL(conexao); // Fecha a conexão do Banco de Dados
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return resposta;
     }
 }

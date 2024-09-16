@@ -4,7 +4,10 @@
  */
 package ementor.plus;
 
+import ementor.plus.LogErros.SQLDuplicateException;
+import ementor.plus.LogErros.SQLPresencaException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,17 +66,6 @@ public class Professor extends Pessoa{
         this.salario = salario;
     }
     
-    public void setPessoa(Pessoa pessoa){
-        this.nome = pessoa.nome;
-        this.dataNascimento = pessoa.dataNascimento;
-        this.cpf = pessoa.cpf;
-        this.telefone = pessoa.telefone;
-        this.rua = pessoa.rua;
-        this.bairro = pessoa.bairro;
-        this.cidade = pessoa.cidade;
-        this.estado = pessoa.estado;
-    }
-    
     public void imprimir(){
         super.imprimir();
         System.out.println("Nome: "+this.dataAdmissao);
@@ -96,36 +88,51 @@ public class Professor extends Pessoa{
     }
     
     public void inserir(){
-        super.inserir();
-        Conexoes banco = new Conexoes();
-        Dados professor = new Dados("professor");
-        professor.addItem("dataAdmicao", this.dataAdmissao);
-        professor.addItem("chefia", this.chefia);
-        professor.addItem("coordenacao", this.coordenacao);
-        professor.addItem("salarioBruto", this.salario);
-        professor.addItem("pessoaCPF", this.getCpf());
-        banco.insereSQL(professor);
+        try{
+            if(this.verificaProfessor(this.cpf)) throw new SQLDuplicateException();
+            super.inserir();
+            Conexoes banco = new Conexoes();
+            Dados professor = new Dados("professor");
+            professor.addItem("dataAdmicao", this.dataAdmissao);
+            professor.addItem("chefia", this.chefia);
+            professor.addItem("coordenacao", this.coordenacao);
+            professor.addItem("salarioBruto", this.salario);
+            professor.addItem("pessoaCPF", this.getCpf());
+            banco.insereSQL(professor);
+        }catch(SQLDuplicateException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void atualiza(String CPF){
-        super.atualiza(CPF);
-        Conexoes banco = new Conexoes();
-        Dados professor = new Dados("aluno");
-        Dados busca = new Dados("aluno");
-        professor.addItem("dataAdmicao", this.dataAdmissao);
-        professor.addItem("chefia", this.chefia);
-        professor.addItem("coordenacao", this.coordenacao);
-        professor.addItem("salarioBruto", this.salario);
-        busca.addItem("pessoaCPF", this.getCpf());
-        banco.atualizaSQL(professor, busca);
+        try{
+            if(!this.verificaProfessor(CPF)) throw new SQLPresencaException();
+            super.atualiza(CPF);
+            Conexoes banco = new Conexoes();
+            Dados professor = new Dados("professor");
+            Dados busca = new Dados("professor");
+            professor.addItem("dataAdmicao", this.dataAdmissao);
+            professor.addItem("chefia", this.chefia);
+            professor.addItem("coordenacao", this.coordenacao);
+            professor.addItem("salarioBruto", this.salario);
+            busca.addItem("pessoaCPF", this.getCpf());
+            banco.atualizaSQL(professor, busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void exclui(String CPF){
-        Conexoes banco = new Conexoes();
-        Dados busca = new Dados("professor");
-        busca.addItem("pessoaCPF", CPF);
-        banco.exclusaoSQL(busca);
-        super.exclui(CPF);
+        try{
+            if(!this.verificaProfessor(CPF)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados busca = new Dados("professor");
+            busca.addItem("pessoaCPF", CPF);
+            banco.exclusaoSQL(busca);
+            super.exclui(CPF);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public ArrayList<Professor> mostrarProfessor(String CPF){
@@ -166,4 +173,11 @@ public class Professor extends Pessoa{
         return professores;
     }
     
+    public boolean verificaProfessor(String CPF){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("professor");
+        busca.addItem("pessoaCPF", CPF);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
+    }
 }

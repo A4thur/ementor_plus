@@ -4,7 +4,10 @@
  */
 package ementor.plus;
 
+import ementor.plus.LogErros.SQLDuplicateException;
+import ementor.plus.LogErros.SQLPresencaException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,6 +101,17 @@ public class Pessoa {
         this.estado = estado;
     }
     
+    public void setPessoa(Pessoa pessoa){
+        this.nome = pessoa.nome;
+        this.dataNascimento = pessoa.dataNascimento;
+        this.cpf = pessoa.cpf;
+        this.telefone = pessoa.telefone;
+        this.rua = pessoa.rua;
+        this.bairro = pessoa.bairro;
+        this.cidade = pessoa.cidade;
+        this.estado = pessoa.estado;
+    }
+    
     public void imprimir(){
         System.out.println("Nome: "+this.nome);
         System.out.println("Data de nascimento: "+this.dataNascimento);
@@ -110,39 +124,54 @@ public class Pessoa {
     }
     
     public void inserir(){
-        Conexoes banco = new Conexoes();
-        Dados pessoa = new Dados("pessoa");
-        pessoa.addItem("nome", this.nome);
-        pessoa.addItem("dataN", this.dataNascimento);
-        pessoa.addItem("CPF", this.cpf);
-        pessoa.addItem("telefone", this.telefone);
-        pessoa.addItem("rua", this.rua);
-        pessoa.addItem("bairro", this.bairro);
-        pessoa.addItem("cidade", this.cidade);
-        pessoa.addItem("uf", this.estado);
-        banco.insereSQL(pessoa);
+        try{
+            if(this.verificaPessoa(this.cpf)) throw new SQLDuplicateException();
+            Conexoes banco = new Conexoes();
+            Dados pessoa = new Dados("pessoa");
+            pessoa.addItem("nome", this.nome);
+            pessoa.addItem("dataN", this.dataNascimento);
+            pessoa.addItem("CPF", this.cpf);
+            pessoa.addItem("telefone", this.telefone);
+            pessoa.addItem("rua", this.rua);
+            pessoa.addItem("bairro", this.bairro);
+            pessoa.addItem("cidade", this.cidade);
+            pessoa.addItem("uf", this.estado);
+            banco.insereSQL(pessoa);
+        }catch(SQLDuplicateException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void atualiza(String CPF){
-        Conexoes banco = new Conexoes();
-        Dados pessoa = new Dados("pessoa");
-        Dados busca = new Dados("pessoa");
-        pessoa.addItem("nome", this.nome);
-        pessoa.addItem("dataN", this.dataNascimento);
-        pessoa.addItem("telefone", this.telefone);
-        pessoa.addItem("rua", this.rua);
-        pessoa.addItem("bairro", this.bairro);
-        pessoa.addItem("cidade", this.cidade);
-        pessoa.addItem("uf", this.estado);
-        busca.addItem("CPF", CPF);
-        banco.atualizaSQL(pessoa, busca);
+        try{
+            if(!this.verificaPessoa(CPF)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados pessoa = new Dados("pessoa");
+            Dados busca = new Dados("pessoa");
+            pessoa.addItem("nome", this.nome);
+            pessoa.addItem("dataN", this.dataNascimento);
+            pessoa.addItem("telefone", this.telefone);
+            pessoa.addItem("rua", this.rua);
+            pessoa.addItem("bairro", this.bairro);
+            pessoa.addItem("cidade", this.cidade);
+            pessoa.addItem("uf", this.estado);
+            busca.addItem("CPF", CPF);
+            banco.atualizaSQL(pessoa, busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void exclui(String CPF){
-        Conexoes banco = new Conexoes();
-        Dados busca = new Dados("pessoa");
-        busca.addItem("CPF", CPF);
-        banco.exclusaoSQL(busca);
+        try{
+            if(!this.verificaPessoa(CPF)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados busca = new Dados("pessoa");
+            busca.addItem("CPF", CPF);
+            banco.exclusaoSQL(busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public ArrayList<Pessoa> mostrarPessoas(String CPF){
@@ -189,5 +218,13 @@ public class Pessoa {
         }
         
         return pessoas;
+    }
+    
+    public boolean verificaPessoa(String CPF){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("pessoa");
+        busca.addItem("CPF", CPF);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
     }
 }

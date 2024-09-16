@@ -243,7 +243,7 @@ public class Menu extends javax.swing.JFrame {
     
         PDFGenerator pdf = new PDFGenerator(Tabela); // Passa o DefaultTableModel para o construtor
         try {
-pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
+            pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
         } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
