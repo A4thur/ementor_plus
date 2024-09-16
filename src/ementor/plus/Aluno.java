@@ -123,14 +123,15 @@ public class Aluno extends Pessoa {
         busca.addItem("pessoaCPF", CPF);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
         
-        ArrayList<Pessoa> pessoas = this.mostrarPessoas(CPF);
+        
         ArrayList<Aluno> alunos = new ArrayList<Aluno>();
         for(int i = 0; i<Resposta.size(); i++){
             Aluno aluno = new Aluno();
             aluno.setMatricula(Resposta.get(i).getVarchar("matricula"));
             aluno.setPeriodo(Resposta.get(i).getInt("periodo"));
             aluno.setFinalizado(Resposta.get(i).getBool("finalizado"));
-            aluno.setPessoa(pessoas.get(i));
+            ArrayList<Pessoa> pessoas = this.mostrarPessoas(CPF);
+            aluno.setPessoa(pessoas.get(0));
             alunos.add(aluno);
         }
         return alunos;

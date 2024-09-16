@@ -169,7 +169,6 @@ public class Login extends javax.swing.JFrame {
             if(user == null){
                 JOptionPane.showMessageDialog(null, "Senha ou usuario incorretos");
             }
-            user.imprimir();
             if (user.getNomeUsuario().equals(nome_usuario) && user.getSenha().equals(senha_usuario)) {  //.next() quer dizer que tem pelo menos 1 resultado
                 Menu menu = new Menu();
                 menu.setVisible(true);

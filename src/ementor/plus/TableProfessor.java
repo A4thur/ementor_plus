@@ -56,9 +56,17 @@ public class TableProfessor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome ", "Data de Nascimento", "CPF", "Telefone", "Rua", "Rua", "Bairro", "Cidade", "Estado", "Data de Admissão", "Chefia", "Coordenação", "Salário Bruto"
+                "Nome ", "Data de Nascimento", "CPF", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Data de Admissão", "Chefia", "Coordenação", "Salário Bruto"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TabelaProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TabelaProfessor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,8 +105,8 @@ public class TableProfessor extends javax.swing.JFrame {
         DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
         for(Professor obj: ListaProfessores) {
             Tabela.addRow(new Object[] {obj.nome, 
-                                        obj.cpf, 
                                         obj.dataNascimento,
+                                        obj.cpf, 
                                         obj.telefone,
                                         obj.rua,
                                         obj.bairro,
@@ -107,7 +115,7 @@ public class TableProfessor extends javax.swing.JFrame {
                                         obj.getDataAdmissao(),
                                         obj.getChefia(),
                                         obj.getCoordenacao(),
-                                        obj.getChefia()});
+                                        obj.getSalario()});
         }
         
         TelaCheia();
