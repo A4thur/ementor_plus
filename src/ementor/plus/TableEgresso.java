@@ -39,11 +39,11 @@ public class TableEgresso extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableEgresso = new javax.swing.JTable();
+        TabelaEgresso = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        TableEgresso.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaEgresso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -51,13 +51,13 @@ public class TableEgresso extends javax.swing.JFrame {
                 "Nome", "Data de Nascimento", "CPF", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Estado", "Matrícula", "Período", "Profissão Atual", "Faixa Salarial", "Curso Anterior", "Curso Atual"
             }
         ));
-        TableEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        TableEgresso.addMouseListener(new java.awt.event.MouseAdapter() {
+        TabelaEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TabelaEgresso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TableEgressoMouseClicked(evt);
+                TabelaEgressoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TableEgresso);
+        jScrollPane1.setViewportView(TabelaEgresso);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,17 +75,17 @@ public class TableEgresso extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TableEgressoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableEgressoMouseClicked
+    private void TabelaEgressoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaEgressoMouseClicked
         editOrDeleteEgresso p = new editOrDeleteEgresso();
         p.setVisible(true);
-    }//GEN-LAST:event_TableEgressoMouseClicked
+    }//GEN-LAST:event_TabelaEgressoMouseClicked
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         ArrayList <Egresso> ListaEgressos = new ArrayList(); 
         
         Egresso busca = new Egresso();
         ListaEgressos = busca.mostrarEgressos();
         System.out.println(ListaEgressos.get(0).getCpf());
-        DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
+        DefaultTableModel Tabela = (DefaultTableModel) TableEgresso.TabelaEgresso.getModel();
        
         for(Egresso obj: ListaEgressos) {
             Tabela.addRow(new Object[] {obj.nome, 
@@ -104,7 +104,8 @@ public class TableEgresso extends javax.swing.JFrame {
                                         obj.getCursoAtual()});
  
         }
-    TelaCheia();
+        TelaCheia();
+    
 }
         
         
@@ -140,13 +141,14 @@ public class TableEgresso extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new TableEgresso().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTable TableEgresso;
+    public static javax.swing.JTable TabelaEgresso;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
