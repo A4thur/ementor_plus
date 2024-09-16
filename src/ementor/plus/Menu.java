@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -220,7 +221,6 @@ public class Menu extends javax.swing.JFrame {
         
         Professor busca = new Professor();
         ListaProfessores = busca.mostrarProfessor();
-        
         DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
         for(Professor obj: ListaProfessores) {
             Tabela.addRow(new Object[] {obj.nome, 
@@ -236,8 +236,7 @@ public class Menu extends javax.swing.JFrame {
                                         obj.getCoordenacao(),
                                         obj.getChefia()});
         }
-
-
+        
     
 
     
