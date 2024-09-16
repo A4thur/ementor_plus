@@ -119,8 +119,7 @@ public class Egresso extends Aluno{
         busca.addItem("alunoCPF", CPF);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
         
-        ArrayList<Pessoa> pessoas = this.mostrarPessoas(CPF);
-        ArrayList<Aluno> alunos = this.mostrarAlunos(CPF);
+        
         ArrayList<Egresso> egressos = new ArrayList<Egresso>();
         
         for(int i = 0; i<Resposta.size(); i++){
@@ -130,8 +129,10 @@ public class Egresso extends Aluno{
             egresso.setFaixaSalarial(Resposta.get(i).getVarchar("faixaSalarial"));
             egresso.setCursoAnterior(Resposta.get(i).getVarchar("cursoAnterior"));
             egresso.setCursoAtual(Resposta.get(i).getVarchar("cursoAtual"));
-            egresso.setAluno(alunos.get(i));
-            egresso.setPessoa(pessoas.get(i));
+            ArrayList<Pessoa> pessoas = this.mostrarPessoas(CPF);
+            ArrayList<Aluno> alunos = this.mostrarAlunos(CPF);
+            egresso.setAluno(alunos.get(0));
+            egresso.setPessoa(pessoas.get(0));
             egressos.add(egresso);
         }
         return egressos;

@@ -238,7 +238,17 @@ public class CadastroAluno extends javax.swing.JFrame {
                     int Periodo = Integer.parseInt(CPeriodo.getText());
 
 
-                    Aluno aluno = new Aluno(CMatricula.getText(), Periodo,true, Cnome.getText(), CData.getText(), CCpf.getText(), CTelefone.getText(), CRua.getText(), CBairro.getText(), CCidade.getText(), CEstado.getText());
+                    Aluno aluno = new Aluno(
+                            CMatricula.getText(), 
+                            Periodo,true, 
+                            Cnome.getText(), 
+                            CData.getText(), 
+                            CCpf.getText(), 
+                            CTelefone.getText(), 
+                            CRua.getText(), 
+                            CBairro.getText(), 
+                            CCidade.getText(), 
+                            CEstado.getText());
                     aluno.inserir();
                     JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     dispose();

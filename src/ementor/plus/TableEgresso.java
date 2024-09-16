@@ -18,6 +18,11 @@ public class TableEgresso extends javax.swing.JFrame {
      */
     public TableEgresso() {
         initComponents();
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
     }
     public void TelaCheia(){
         setExtendedState(MAXIMIZED_BOTH);
@@ -43,7 +48,7 @@ public class TableEgresso extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Data de Nascimento", "CPF", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Estado", "Matrícula", "Período", "Turma", "Notas", "Profissão Atual", "Faixa Salarial", "Curso Anterior", "Curso Atual"
+                "Nome", "Data de Nascimento", "CPF", "Telefone", "Rua", "Bairro", "Cidade", "Estado", "Estado", "Matrícula", "Período", "Profissão Atual", "Faixa Salarial", "Curso Anterior", "Curso Atual"
             }
         ));
         TableEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -74,26 +79,29 @@ public class TableEgresso extends javax.swing.JFrame {
         editOrDeleteEgresso p = new editOrDeleteEgresso();
         p.setVisible(true);
     }//GEN-LAST:event_TableEgressoMouseClicked
-    /*private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         ArrayList <Egresso> ListaEgressos = new ArrayList(); 
         
         Egresso busca = new Egresso();
         ListaEgressos = busca.mostrarEgressos();
-        
+        System.out.println(ListaEgressos.get(0).getCpf());
         DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
-        for(Professor obj: ListaProfessores) {
+       
+        for(Egresso obj: ListaEgressos) {
             Tabela.addRow(new Object[] {obj.nome, 
-                                        obj.cpf, 
                                         obj.dataNascimento,
+                                        obj.cpf, 
                                         obj.telefone,
                                         obj.rua,
                                         obj.bairro,
                                         obj.cidade,
                                         obj.estado, 
-                                        obj.getDataAdmissao(),
-                                        obj.getChefia(),
-                                        obj.getCoordenacao(),
-                                        obj.getChefia()});
+                                        obj.getMatricula(),
+                                        obj.getPeriodo(),
+                                        obj.getProfissao(),
+                                        obj.getFaixaSalarial(),
+                                        obj.getCursoAnterior(),
+                                        obj.getCursoAtual()});
  
         }
     TelaCheia();
@@ -138,7 +146,7 @@ public class TableEgresso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TableEgresso;
+    public static javax.swing.JTable TableEgresso;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

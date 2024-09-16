@@ -115,7 +115,7 @@ public class Professor extends Pessoa{
             professor.addItem("chefia", this.chefia);
             professor.addItem("coordenacao", this.coordenacao);
             professor.addItem("salarioBruto", this.salario);
-            busca.addItem("pessoaCPF", this.getCpf());
+            busca.addItem("pessoaCPF", CPF);
             banco.atualizaSQL(professor, busca);
         }catch(SQLPresencaException e){
             JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -140,8 +140,8 @@ public class Professor extends Pessoa{
         Dados busca = new Dados("professor");
         busca.addItem("pessoaCPF", CPF);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
-        
         ArrayList<Pessoa> pessoas = this.mostrarPessoas(CPF);
+        
         ArrayList<Professor> professores = new ArrayList<Professor>();
         for(int i = 0; i<Resposta.size(); i++){
             Professor professor = new Professor();
@@ -159,7 +159,7 @@ public class Professor extends Pessoa{
         Conexoes banco = new Conexoes();
         ArrayList<Dados> Resposta = banco.mostrarSQL("professor");
         
-        ArrayList<Pessoa> pessoas = this.mostrarPessoas();
+        
         ArrayList<Professor> professores = new ArrayList<Professor>();
         for(int i = 0; i<Resposta.size(); i++){
             Professor professor = new Professor();
@@ -167,7 +167,8 @@ public class Professor extends Pessoa{
             professor.setChefia(Resposta.get(i).getBool("chefia"));
             professor.setCoordenacao(Resposta.get(i).getBool("coordenacao"));
             professor.setSalario(Resposta.get(i).getFloat("salarioBruto"));
-            professor.setPessoa(pessoas.get(i));
+            ArrayList<Pessoa> pessoas = this.mostrarPessoas(Resposta.get(i).getVarchar("pessoaCPF"));
+            professor.setPessoa(pessoas.get(0));
             professores.add(professor);
         }
         return professores;
