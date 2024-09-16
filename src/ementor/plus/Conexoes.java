@@ -22,7 +22,7 @@ public class Conexoes {
     private final String porta = "3306"; //Porta padrão de Conexão do MySQL Server
     private final String nome = "ementor_plus"; //Nome da nossa base de dados
     private final String usuario = "root"; //Usuario padrão do MySQL
-    private final String senha = "123456"; // Senha definida no momento da instalação do MySQL
+    private final String senha = "admin"; // Senha definida no momento da instalação do MySQL
     private final String FusoHorario = "?useTimezone=true&serverTimezone=UTC";
     private final String URL ="jdbc:mysql://"+caminho+":"+porta+"/"+nome+FusoHorario; //Ajusta o fuso horário em relação a sede da Oracle 
     

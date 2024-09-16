@@ -11,15 +11,14 @@ import java.util.ArrayList;
  * @author aluno
  */
 public class Aluno extends Pessoa {
-    private String matricula, turma;
+    private String matricula;
     private int periodo;
     private boolean finalizado;
 
-    public Aluno(String matricula, int periodo, String turma, boolean finalizado, String nome, String dataNascimento, String cpf, String telefone, String rua, String bairro, String cidade, String estado) {
+    public Aluno(String matricula, int periodo, boolean finalizado, String nome, String dataNascimento, String cpf, String telefone, String rua, String bairro, String cidade, String estado) {
         super(nome, dataNascimento, cpf, telefone, rua, bairro, cidade, estado);
         this.matricula = matricula;
         this.periodo = periodo;
-        this.turma = turma;
         this.finalizado = finalizado;
     }
     
@@ -27,7 +26,6 @@ public class Aluno extends Pessoa {
         super();
         this.matricula = "";
         this.periodo = 0;
-        this.turma = "";
         this.finalizado = false;
     }
 
@@ -47,13 +45,7 @@ public class Aluno extends Pessoa {
         this.finalizado = finalizado;
     }
 
-    public String getTurma() {
-        return turma;
-    }
-
-    public void setTurma(String turma) {
-        this.turma = turma;
-    }
+    
 
     public int getPeriodo() {
         return periodo;
@@ -78,7 +70,6 @@ public class Aluno extends Pessoa {
         super.imprimir();
         System.out.println("Matricula: "+this.matricula);
         System.out.println("Periodo: "+this.periodo);
-        System.out.println("Turma: "+this.turma);
         System.out.println("Finalizou: "+this.finalizado);
     }
     

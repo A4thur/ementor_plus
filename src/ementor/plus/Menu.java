@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -220,7 +221,6 @@ public class Menu extends javax.swing.JFrame {
         
         Professor busca = new Professor();
         ListaProfessores = busca.mostrarProfessor();
-        
         DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
         for(Professor obj: ListaProfessores) {
             Tabela.addRow(new Object[] {obj.nome, 
@@ -236,14 +236,13 @@ public class Menu extends javax.swing.JFrame {
                                         obj.getCoordenacao(),
                                         obj.getChefia()});
         }
-
-
+        
     
 
     
         PDFGenerator pdf = new PDFGenerator(Tabela); // Passa o DefaultTableModel para o construtor
         try {
-pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
+            pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
         } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
