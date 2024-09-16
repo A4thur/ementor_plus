@@ -15,6 +15,8 @@ public class EmentorPlus {
      */
     public static void main(String[] args) {
         
+        Professor professor = new Professor("30092002", true, true, 20000f, "sim2", "sim3", "sim4", "sim5", "sim6", "sim7", "sim8", "sim9");
+        professor.atualiza("149.639.807-63");
         
         Login login = new Login();
         login.setVisible(true);

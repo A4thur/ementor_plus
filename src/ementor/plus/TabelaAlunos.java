@@ -5,6 +5,7 @@
 package ementor.plus;
 
 import java.util.ArrayList;
+import javax.swing.ButtonGroup;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +26,9 @@ public class TabelaAlunos extends javax.swing.JFrame {
         });
         
     }
+    
+    
+    
     public void TelaCheia(){
         setExtendedState(MAXIMIZED_BOTH);
         setUndecorated(true); 
@@ -41,6 +45,8 @@ public class TabelaAlunos extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TableAluno = new javax.swing.JTable();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,7 +66,7 @@ public class TabelaAlunos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TableAluno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TableAluno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TableAluno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableAlunoMouseClicked(evt);
@@ -68,24 +74,72 @@ public class TabelaAlunos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TableAluno);
 
+        jRadioButton1.setText("Editar/Deletar");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton2.setText("Ver Turmas");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1489, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(519, 519, 519)
+                .addComponent(jRadioButton1)
+                .addGap(50, 50, 50)
+                .addComponent(jRadioButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TableAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAlunoMouseClicked
-        editOrDeleteAluno p = new editOrDeleteAluno();
-        p.setVisible(true);
+        int selectedRow = TableAluno.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TableAluno.getModel();
+        String cpf = model.getValueAt(selectedRow, 2).toString();
+        if(jRadioButton1.isSelected()){
+            editOrDeleteAluno p = new editOrDeleteAluno();
+            p.setVisible(true);
+        }else if(jRadioButton2.isSelected()){
+            TableTurma t = new TableTurma(cpf);
+            t.setVisible(true);
+        }
     }//GEN-LAST:event_TableAlunoMouseClicked
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setSelected(false);
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(true);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    
+    
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         ArrayList <Aluno> ListaAlunos = new ArrayList(); 
         
@@ -96,8 +150,8 @@ public class TabelaAlunos extends javax.swing.JFrame {
         DefaultTableModel Tabela = (DefaultTableModel) TabelaAlunos.TableAluno.getModel();
         for(Aluno obj: ListaAlunos) {
             Tabela.addRow(new Object[] {obj.nome, 
-                                        obj.cpf, 
                                         obj.dataNascimento,
+                                        obj.cpf,
                                         obj.telefone,
                                         obj.rua,
                                         obj.bairro,
@@ -147,6 +201,8 @@ public class TabelaAlunos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable TableAluno;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

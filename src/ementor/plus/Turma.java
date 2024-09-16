@@ -112,20 +112,22 @@ public class Turma {
         }
     }
     
-    public void mostraTurma(String codigo){
+    public Turma mostraTurma(String codigo){
         Conexoes banco = new Conexoes();
         Dados busca = new Dados("turma");
         busca.addItem("codigo", codigo);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
+        Turma turma = new Turma();
         try{
             if(Resposta.isEmpty()) throw new SQLPresencaException();
-            this.setCodigo(Resposta.get(0).getVarchar("codigo"));
-            this.setNome(Resposta.get(0).getVarchar("nome"));
-            this.setProfessorResponsvel(Resposta.get(0).getVarchar("professorCPF"));
-            this.setnAvaliacoes(Resposta.get(0).getInt("numAvaliacoes"));
+            turma.setCodigo(Resposta.get(0).getVarchar("codigo"));
+            turma.setNome(Resposta.get(0).getVarchar("nome"));
+            turma.setProfessorResponsvel(Resposta.get(0).getVarchar("professorCPF"));
+            turma.setnAvaliacoes(Resposta.get(0).getInt("numAvaliacoes"));
         }catch(SQLPresencaException e){
             JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
+        return turma;
     }
     
     public boolean verificaTurma(String Codigo){

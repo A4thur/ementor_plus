@@ -120,23 +120,61 @@ public class AlunoTurma {
         }
     }
     
-    public ArrayList<AlunoTurma> mostrarAlunoTurma(){
+    public ArrayList<AlunoTurma> mostrarAlunoTurma(String cpf){
         Conexoes banco = new Conexoes();
         Dados Busca = new Dados("aluno_turma");
-        ArrayList<Dados> Resposta = new ArrayList();
+        Busca.addItem("alunoCPF", cpf);
+        ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
         ArrayList<AlunoTurma> alunoTurma = new ArrayList();
         try{
             if(Resposta.isEmpty()) throw new SQLPresencaException();
             for(int i = 0; i < Resposta.size(); i++){
                 AlunoTurma aluno = new AlunoTurma();
-                aluno.setAlunoCPF(Resposta.get(i).getVarchar(""));
-                aluno.setCodigoTurma(Resposta.get(i).getVarchar("nome"));
+                aluno.setAlunoCPF(Resposta.get(i).getVarchar("alunoCPF"));
+                aluno.setCodigoTurma(Resposta.get(i).getVarchar("codigoTurma"));
+                aluno.setNotaMedia(Resposta.get(i).getFloat("notaMedia"));
                 alunoTurma.add(aluno);
             }
         }catch(SQLPresencaException e){
             JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
         return alunoTurma;
+    }
+    
+    public ArrayList<AlunoTurma> mostrarCodigoTurma(String codigo){
+        Conexoes banco = new Conexoes();
+        Dados Busca = new Dados("aluno_turma");
+        Busca.addItem("codigoTurma", codigo);
+        ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
+        ArrayList<AlunoTurma> alunoTurma = new ArrayList();
+        try{
+            if(Resposta.isEmpty()) throw new SQLPresencaException();
+            for(int i = 0; i < Resposta.size(); i++){
+                AlunoTurma aluno = new AlunoTurma();
+                aluno.setAlunoCPF(Resposta.get(i).getVarchar("alunoCPF"));
+                aluno.setCodigoTurma(Resposta.get(i).getVarchar("codigoTurma"));
+                aluno.setNotaMedia(Resposta.get(i).getFloat("notaMedia"));
+                alunoTurma.add(aluno);
+            }
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        return alunoTurma;
+    }
+    
+    public int AlunoTurmaId(String cpf, String codigo){
+        Conexoes banco = new Conexoes();
+        Dados Busca = new Dados("aluno_turma");
+        Busca.addItem("alunoCPF", cpf);
+        ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
+        int id = 0;
+        try{
+            if(Resposta.isEmpty()) throw new SQLPresencaException();
+            id = Resposta.get(0).getInt("id");
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        return id;
     }
     
     public AlunoTurma mostrarAlunoTurmaId(int id){
