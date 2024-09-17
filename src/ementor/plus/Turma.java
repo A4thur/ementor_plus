@@ -118,15 +118,11 @@ public class Turma {
         busca.addItem("codigo", codigo);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
         Turma turma = new Turma();
-        try{
-            if(Resposta.isEmpty()) throw new SQLPresencaException();
-            turma.setCodigo(Resposta.get(0).getVarchar("codigo"));
-            turma.setNome(Resposta.get(0).getVarchar("nome"));
-            turma.setProfessorResponsvel(Resposta.get(0).getVarchar("professorCPF"));
-            turma.setnAvaliacoes(Resposta.get(0).getInt("numAvaliacoes"));
-        }catch(SQLPresencaException e){
-            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
+        if (Resposta.isEmpty()) return null;
+        turma.setCodigo(Resposta.get(0).getVarchar("codigo"));
+        turma.setNome(Resposta.get(0).getVarchar("nome"));
+        turma.setProfessorResponsvel(Resposta.get(0).getVarchar("professorCPF"));
+        turma.setnAvaliacoes(Resposta.get(0).getInt("numAvaliacoes"));
         return turma;
     }
     

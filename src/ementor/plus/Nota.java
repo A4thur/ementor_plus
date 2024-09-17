@@ -98,17 +98,12 @@ public class Nota {
         busca.addItem("alunoTurmaId", id);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
         ArrayList<Nota> notas = new ArrayList<Nota>();
-        try{
-            if(Resposta.isEmpty()) throw new SQLPresencaException();
-            for(int i = 0; i<Resposta.size(); i++){
-                Nota nota = new Nota();
-                nota.setAlunoTurmaid(Resposta.get(i).getInt("alunoTurmaId"));
-                nota.setNota(Resposta.get(i).getFloat("nota"));
-                nota.setAvaliacao(Resposta.get(i).getInt("avaliacao"));
-                notas.add(nota);
-            }
-        }catch(SQLPresencaException e){
-            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        for(int i = 0; i<Resposta.size(); i++){
+            Nota nota = new Nota();
+            nota.setAlunoTurmaid(Resposta.get(i).getInt("alunoTurmaId"));
+            nota.setNota(Resposta.get(i).getFloat("nota"));
+            nota.setAvaliacao(Resposta.get(i).getInt("avaliacao"));
+            notas.add(nota);
         }
         return notas;
     }
