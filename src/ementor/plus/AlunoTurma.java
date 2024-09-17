@@ -159,6 +159,7 @@ public class AlunoTurma {
         Busca.addItem("alunoCPF", cpf);
         ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
         int id = 0;
+        if (Resposta.isEmpty()) return id;
         id = Resposta.get(0).getInt("id");
         return id;
     }
@@ -169,7 +170,7 @@ public class AlunoTurma {
         Busca.addItem("id", id);
         ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
         AlunoTurma aluno = new AlunoTurma();
-        if(Resposta.isEmpty()) throw new SQLPresencaException();
+        if (Resposta.isEmpty()) return aluno;
         aluno.setAlunoCPF(Resposta.get(0).getVarchar("alunoCPF"));
         aluno.setCodigoTurma(Resposta.get(0).getVarchar("codigoTurma"));
         aluno.setNotaMedia(Resposta.get(0).getFloat("notaMedia"));

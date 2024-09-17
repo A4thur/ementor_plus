@@ -216,7 +216,6 @@ public class Pessoa {
             pessoa.setCpf(Resposta.get(i).getVarchar("CPF"));
             pessoas.add(pessoa);
         }
-        
         return pessoas;
     }
     
