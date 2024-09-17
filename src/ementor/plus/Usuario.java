@@ -114,9 +114,7 @@ public class Usuario extends Pessoa {
         busca.addItem("nome", Usuario);
         busca.addItem("senha", Senha);
         ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
-        if(Resposta.isEmpty()){
-            return null;
-        }
+        if(Resposta.isEmpty()) return null;
         Usuario user = new Usuario();
         user.setNomeUsuario(Resposta.get(0).getVarchar("nome"));
         user.setSenha(Resposta.get(0).getVarchar("senha"));

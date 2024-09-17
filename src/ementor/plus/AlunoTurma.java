@@ -126,17 +126,13 @@ public class AlunoTurma {
         Busca.addItem("alunoCPF", cpf);
         ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
         ArrayList<AlunoTurma> alunoTurma = new ArrayList();
-        try{
-            if(Resposta.isEmpty()) throw new SQLPresencaException();
-            for(int i = 0; i < Resposta.size(); i++){
-                AlunoTurma aluno = new AlunoTurma();
-                aluno.setAlunoCPF(Resposta.get(i).getVarchar("alunoCPF"));
-                aluno.setCodigoTurma(Resposta.get(i).getVarchar("codigoTurma"));
-                aluno.setNotaMedia(Resposta.get(i).getFloat("notaMedia"));
-                alunoTurma.add(aluno);
-            }
-        }catch(SQLPresencaException e){
-            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        if(Resposta.isEmpty()) throw new SQLPresencaException();
+        for(int i = 0; i < Resposta.size(); i++){
+            AlunoTurma aluno = new AlunoTurma();
+            aluno.setAlunoCPF(Resposta.get(i).getVarchar("alunoCPF"));
+            aluno.setCodigoTurma(Resposta.get(i).getVarchar("codigoTurma"));
+            aluno.setNotaMedia(Resposta.get(i).getFloat("notaMedia"));
+            alunoTurma.add(aluno);
         }
         return alunoTurma;
     }
@@ -147,17 +143,12 @@ public class AlunoTurma {
         Busca.addItem("codigoTurma", codigo);
         ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
         ArrayList<AlunoTurma> alunoTurma = new ArrayList();
-        try{
-            if(Resposta.isEmpty()) throw new SQLPresencaException();
-            for(int i = 0; i < Resposta.size(); i++){
-                AlunoTurma aluno = new AlunoTurma();
-                aluno.setAlunoCPF(Resposta.get(i).getVarchar("alunoCPF"));
-                aluno.setCodigoTurma(Resposta.get(i).getVarchar("codigoTurma"));
-                aluno.setNotaMedia(Resposta.get(i).getFloat("notaMedia"));
-                alunoTurma.add(aluno);
-            }
-        }catch(SQLPresencaException e){
-            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        for(int i = 0; i < Resposta.size(); i++){
+            AlunoTurma aluno = new AlunoTurma();
+            aluno.setAlunoCPF(Resposta.get(i).getVarchar("alunoCPF"));
+            aluno.setCodigoTurma(Resposta.get(i).getVarchar("codigoTurma"));
+            aluno.setNotaMedia(Resposta.get(i).getFloat("notaMedia"));
+            alunoTurma.add(aluno);
         }
         return alunoTurma;
     }
@@ -168,12 +159,7 @@ public class AlunoTurma {
         Busca.addItem("alunoCPF", cpf);
         ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
         int id = 0;
-        try{
-            if(Resposta.isEmpty()) throw new SQLPresencaException();
-            id = Resposta.get(0).getInt("id");
-        }catch(SQLPresencaException e){
-            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
+        id = Resposta.get(0).getInt("id");
         return id;
     }
     
@@ -183,15 +169,10 @@ public class AlunoTurma {
         Busca.addItem("id", id);
         ArrayList<Dados> Resposta = banco.mostrarSQL(Busca);
         AlunoTurma aluno = new AlunoTurma();
-        try{
-            if(Resposta.isEmpty()) throw new SQLPresencaException();
-            aluno.setAlunoCPF(Resposta.get(0).getVarchar("alunoCPF"));
-            aluno.setCodigoTurma(Resposta.get(0).getVarchar("codigoTurma"));
-            aluno.setNotaMedia(Resposta.get(0).getFloat("notaMedia"));
-            
-        }catch(SQLPresencaException e){
-            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
+        if(Resposta.isEmpty()) throw new SQLPresencaException();
+        aluno.setAlunoCPF(Resposta.get(0).getVarchar("alunoCPF"));
+        aluno.setCodigoTurma(Resposta.get(0).getVarchar("codigoTurma"));
+        aluno.setNotaMedia(Resposta.get(0).getFloat("notaMedia"));
         return aluno;
     }
     
