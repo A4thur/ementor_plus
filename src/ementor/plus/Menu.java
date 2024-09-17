@@ -222,37 +222,19 @@ public class Menu extends javax.swing.JFrame {
                                
     
     private void PDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PDFActionPerformed
-        ArrayList <Professor> ListaProfessores = new ArrayList(); 
+        ArrayList <Aluno> ListaAlunos = new ArrayList(); 
         
-        Professor busca = new Professor();
-        ListaProfessores = busca.mostrarProfessor();
-        DefaultTableModel Tabela = (DefaultTableModel) TableProfessor.TabelaProfessor.getModel();
-        for(Professor obj: ListaProfessores) {
-            Tabela.addRow(new Object[] {obj.nome, 
-                                        obj.cpf, 
-                                        obj.dataNascimento,
-                                        obj.telefone,
-                                        obj.rua,
-                                        obj.bairro,
-                                        obj.cidade,
-                                        obj.estado, 
-                                        obj.getDataAdmissao(),
-                                        obj.getChefia(),
-                                        obj.getCoordenacao(),
-                                        obj.getChefia()});
-        }
-        
-    
-
-    
-        PDFGenerator pdf = new PDFGenerator(Tabela); // Passa o DefaultTableModel para o construtor
-        try {
-            pdf.exportTableModelToPDF(Tabela, "relatorio.pdf");
-        } catch (IOException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Aluno busca = new Aluno();
+        ListaAlunos = busca.mostrarAlunos();
+        String[] colunas = {
+        "Nome", "CPF", "Data Nascimento", "Telefone", 
+        "Rua", "Bairro", "Cidade", "Estado", 
+        "Data Admissao", "Chefia", "Coordenacao"
+        };
+        String filePath = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorio.pdf";
+        PDFGenerator pdf = new PDFGenerator();
+        pdf.gerarPDF(colunas,ListaAlunos, filePath);
         JOptionPane.showMessageDialog(null, "PDF gerado com sucesso!");
-        JOptionPane.showMessageDialog(null, "Tabela ou modelo não inicializados.");
 
 
     }//GEN-LAST:event_PDFActionPerformed
