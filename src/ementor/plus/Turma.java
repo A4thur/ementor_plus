@@ -130,6 +130,21 @@ public class Turma {
         return turma;
     }
     
+    public ArrayList<Turma> mostrarTurmas(){
+        Conexoes banco = new Conexoes();
+        ArrayList<Dados> Resposta = banco.mostrarSQL("turma");
+        ArrayList<Turma> turmas = new ArrayList<Turma>();
+        for(int i = 0; i<Resposta.size(); i++){
+            Turma turma = new Turma();
+            turma.setCodigo(Resposta.get(i).getVarchar("codigo"));
+            turma.setNome(Resposta.get(i).getVarchar("nome"));
+            turma.setProfessorResponsvel(Resposta.get(i).getVarchar("professorCPF"));
+            turma.setnAvaliacoes(Resposta.get(i).getInt("numAvaliacoes"));
+            turmas.add(turma);
+        }
+        return turmas;
+    }
+    
     public boolean verificaTurma(String Codigo){
         Conexoes banco = new Conexoes();
         Dados busca = new Dados("turma");

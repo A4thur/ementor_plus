@@ -141,14 +141,15 @@ public class Aluno extends Pessoa {
         Conexoes banco = new Conexoes();
         ArrayList<Dados> Resposta = banco.mostrarSQL("aluno");
         
-        ArrayList<Pessoa> pessoas = this.mostrarPessoas();
+        
         ArrayList<Aluno> alunos = new ArrayList<Aluno>();
         for(int i = 0; i<Resposta.size(); i++){
             Aluno aluno = new Aluno();
             aluno.setMatricula(Resposta.get(i).getVarchar("matricula"));
             aluno.setPeriodo(Resposta.get(i).getInt("periodo"));
             aluno.setFinalizado(Resposta.get(i).getBool("finalizado"));
-            aluno.setPessoa(pessoas.get(i));
+            ArrayList<Pessoa> pessoas = this.mostrarPessoas(Resposta.get(i).getVarchar("pessoaCPF"));
+            aluno.setPessoa(pessoas.get(0));
             alunos.add(aluno);
         }
         return alunos;

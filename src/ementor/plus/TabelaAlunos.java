@@ -120,7 +120,7 @@ public class TabelaAlunos extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TableAluno.getModel();
         String cpf = model.getValueAt(selectedRow, 2).toString();
         if(jRadioButton1.isSelected()){
-            editOrDeleteAluno p = new editOrDeleteAluno();
+            editOrDeleteAluno p = new editOrDeleteAluno(cpf);
             p.setVisible(true);
         }else if(jRadioButton2.isSelected()){
             TableTurma t = new TableTurma(cpf);

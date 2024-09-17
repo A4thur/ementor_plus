@@ -121,5 +121,17 @@ public class Nota {
         boolean resposta = banco.verificaOcorrencia(busca);
         return resposta;
     }
+    public void excluirNotas(int id){
+        try{
+            if(!this.verificaAlunoTurma(id, avaliacao)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados busca = new Dados("aluno_turma_nota");
+            busca.addItem("alunoTurmaId", id);
+            banco.exclusaoSQL(busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
     
 }

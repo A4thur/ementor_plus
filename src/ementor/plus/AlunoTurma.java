@@ -211,4 +211,18 @@ public class AlunoTurma {
         boolean resposta = banco.verificaOcorrencia(busca);
         return resposta;
     }
+    public void atualizaId(int id){
+        try{
+            if(!this.verificaAlunoTurma(id)) throw new SQLPresencaException();
+            Conexoes banco = new Conexoes();
+            Dados dados = new Dados("aluno_turma");
+            Dados busca = new Dados("aluno_turma");
+            dados.addItem("codigoTurma", this.codigoTurma);
+            dados.addItem("alunoCPF", this.alunoCPF);
+            busca.addItem("id", id);
+            banco.atualizaSQL(dados, busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

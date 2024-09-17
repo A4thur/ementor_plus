@@ -55,7 +55,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setText("Menu");
 
         botaoCadastrarAluno.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        botaoCadastrarAluno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrarAluno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoCadastrarAluno.setLabel("Cadastrar Aluno");
         botaoCadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
 
         botaoListarAlunos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoListarAlunos.setText("Listar Alunos");
-        botaoListarAlunos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoListarAlunos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoListarAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarAlunosActionPerformed(evt);
@@ -74,11 +74,16 @@ public class Menu extends javax.swing.JFrame {
 
         botaoCadastrarTurma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoCadastrarTurma.setText("Cadastrar Turma");
-        botaoCadastrarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoCadastrarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarTurmaActionPerformed(evt);
+            }
+        });
 
         botaoListarTurma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoListarTurma.setText("Listar Turma");
-        botaoListarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoListarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoListarTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarTurmaActionPerformed(evt);
@@ -87,7 +92,7 @@ public class Menu extends javax.swing.JFrame {
 
         botaoListarProfessor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoListarProfessor.setText("Listar Professor");
-        botaoListarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoListarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoListarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarProfessorActionPerformed(evt);
@@ -96,7 +101,7 @@ public class Menu extends javax.swing.JFrame {
 
         botaoCadastrarProfessor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoCadastrarProfessor.setText("Cadastrar Professor");
-        botaoCadastrarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoCadastrarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCadastrarProfessorActionPerformed(evt);
@@ -105,7 +110,7 @@ public class Menu extends javax.swing.JFrame {
 
         botaoCadastrarEgresso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoCadastrarEgresso.setText("Cadastrar Egresso");
-        botaoCadastrarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoCadastrarEgresso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCadastrarEgressoActionPerformed(evt);
@@ -114,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
 
         botaoListarEgresso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         botaoListarEgresso.setText("Listar Egresso");
-        botaoListarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoListarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoListarEgresso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarEgressoActionPerformed(evt);
@@ -123,7 +128,7 @@ public class Menu extends javax.swing.JFrame {
 
         PDF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         PDF.setText("PDF ALUNO");
-        PDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PDF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PDFActionPerformed(evt);
@@ -253,7 +258,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_PDFActionPerformed
 
     private void botaoListarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoListarTurmaActionPerformed
-        // TODO add your handling code here:
+        TableTurmas turmas = new TableTurmas();
+        turmas.setVisible(true);
     }//GEN-LAST:event_botaoListarTurmaActionPerformed
 
     private void botaoCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarAlunoActionPerformed
@@ -275,6 +281,11 @@ public class Menu extends javax.swing.JFrame {
         TableEgresso tableEgresso = new TableEgresso();
         tableEgresso.setVisible(true);
     }//GEN-LAST:event_botaoListarEgressoActionPerformed
+
+    private void botaoCadastrarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarTurmaActionPerformed
+        CadastroTurma turma = new CadastroTurma();
+        turma.setVisible(true);
+    }//GEN-LAST:event_botaoCadastrarTurmaActionPerformed
 
     /**
      * @param args the command line arguments
