@@ -23,130 +23,252 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
 public class PDFGenerator {
 
-    public void gerarPDF(String[] colunas, ArrayList<Aluno> alunos, String filePath) {
-        try (PDDocument document = new PDDocument()) {
-            PDPage page = new PDPage();
-            document.addPage(page);
+  
 
-            // Carregar fonte personalizada
-            PDType0Font customFont = PDType0Font.load(document, new File("/home/bergamini/Downloads/ementorp/ementor_plus/lib/Roboto-Black.ttf"));
 
-            // Definindo as fontes customizadas
-            PDFont font = customFont;
-            PDFont fontNormal = customFont;
 
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath, String subtitulo) {
+    try (PDDocument document = new PDDocument()) {
+        // Gerar nome de arquivo único se o original já existir
+        filePath = gerarNomeUnico(filePath);
 
-            // Definir margem e posição inicial
-            float margin = 50;
-            float yStart = page.getMediaBox().getHeight() - margin;
+        // Define a página em paisagem
+        PDRectangle landscape = new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth());
+        PDPage page = new PDPage(landscape);
+        document.addPage(page);
 
-            // Título
-            contentStream.beginText();
-            contentStream.setFont(font, 18);
-            contentStream.newLineAtOffset(margin, yStart);
-            contentStream.showText("Relatório de Migração de Dados");
-            contentStream.endText();
+        // Carregar fonte personalizada
+        PDType0Font customFont = PDType0Font.load(document, new File("/home/bergamini/Downloads/ementorp/ementor_plus/lib/Roboto-Black.ttf"));
 
-            // Espaçamento após título
-            yStart -= 25;
+        // Definindo as fontes customizadas
+        PDFont font = customFont;
+        PDFont fontNormal = customFont;
 
-            // Desenhar cabeçalhos das colunas
-            contentStream.beginText();
-            contentStream.setFont(font, 12);
-            contentStream.newLineAtOffset(margin, yStart);
-            for (String coluna : colunas) {
-                contentStream.showText(coluna + "    "); // Espaçamento entre colunas
-            }
-            contentStream.endText();
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-            // Espaçamento após cabeçalhos
-            yStart -= 20;
+        // Definir margem e posição inicial
+        float margin = 50;
+        float pageWidth = page.getMediaBox().getWidth() - (2 * margin); // Largura da página sem margem
+        float yStart = page.getMediaBox().getHeight() - margin;
+        float cellHeight = 20; // Altura de cada célula
+        float cellMargin = 5; // Margem interna da célula
 
-            // Preencher os dados dos alunos
-            for (Aluno aluno : alunos) {
-                if (yStart < margin) {
-                    // Nova página se atingir o limite
-                    contentStream.close();
-                    page = new PDPage();
-                    document.addPage(page);
-                    contentStream = new PDPageContentStream(document, page);
-                    yStart = page.getMediaBox().getHeight() - margin;
-                    
-                    // Recria cabeçalhos na nova página
-                    contentStream.beginText();
-                    contentStream.setFont(font, 12);
-                    contentStream.newLineAtOffset(margin, yStart);
-                    for (String coluna : colunas) {
-                        contentStream.showText(coluna + "    ");
-                    }
-                    contentStream.endText();
-                    
-                    // Espaçamento após cabeçalhos
-                    yStart -= 20;
-                }
-
-                contentStream.beginText();
-                contentStream.setFont(fontNormal, 12);
-                contentStream.newLineAtOffset(margin, yStart);
-
-                // Preencher os dados dos alunos com base na ordem das colunas
-                for (String coluna : colunas) {
-                    String valor = "N/A"; // Valor padrão para coluna não encontrada
-                    switch (coluna) {
-                        case "Nome":
-                            valor = aluno.getNome();
-                            break;
-                        case "Data Nascimento":
-                            valor = aluno.getDataNascimento();
-                            break;
-                        case "CPF":
-                            valor = aluno.getCpf();
-                            break;
-                        case "Telefone":
-                            valor = aluno.getTelefone();
-                            break;
-                        case "Rua":
-                            valor = aluno.getRua();
-                            break;
-                        case "Bairro":
-                            valor = aluno.getBairro();
-                            break;
-                        case "Cidade":
-                            valor = aluno.getCidade();
-                            break;
-                        case "Estado":
-                            valor = aluno.getEstado();
-                            break;
-                        case "Matricula":
-                            valor = aluno.getMatricula();
-                            break;
-                        case "Periodo":
-                            valor = String.valueOf(aluno.getPeriodo());
-                            break;
-                        case "Finalizado":
-                            valor = String.valueOf(aluno.isFinalizado());
-                            break;
-                        // Adicione mais casos se necessário
-                    }
-                    contentStream.showText(valor + "    ");
-                }
-
-                contentStream.endText();
-                yStart -= 15;
-            }
-
-            contentStream.close();
-            document.save(filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Definir largura das colunas proporcionalmente à largura da página
+        float[] colWidths = new float[colunas.length];
+        for (int i = 0; i < colunas.length; i++) {
+            colWidths[i] = pageWidth / colunas.length; // Dividindo igualmente a largura
         }
+
+        // Centralizar o título
+        String titulo = "Relatório de Migração de Dados";
+        contentStream.beginText();
+        contentStream.setFont(font, 16);
+        float titleWidth = (font.getStringWidth(titulo) / 1000) * 16;
+        contentStream.newLineAtOffset((page.getMediaBox().getWidth() - titleWidth) / 2, yStart);
+        contentStream.showText(titulo);
+        contentStream.endText();
+
+        // Espaçamento após título
+        yStart -= 25;
+
+        // Subtítulo com nome e data
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String subTituloTexto = subtitulo + " - " + formatter.format(date);
+
+        contentStream.beginText();
+        contentStream.setFont(font, 12);
+        float subtitleWidth = (font.getStringWidth(subTituloTexto) / 1000) * 12;
+        contentStream.newLineAtOffset((page.getMediaBox().getWidth() - subtitleWidth) / 2, yStart);
+        contentStream.showText(subTituloTexto);
+        contentStream.endText();
+
+        // Espaçamento após subtítulo
+        yStart -= 20;
+
+        // Desenhar a tabela - Cabeçalhos
+        float xPos = margin;
+        for (int i = 0; i < colunas.length; i++) {
+            contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+            contentStream.beginText();
+            contentStream.setFont(font, 7); // Fonte tamanho 8 para cabeçalhos
+            float textWidth = (font.getStringWidth(colunas[i]) / 1000) * 8;
+            contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin); // Centraliza o texto
+            contentStream.showText(colunas[i]);
+            contentStream.endText();
+            xPos += colWidths[i];
+        }
+        contentStream.stroke(); // Desenhar as bordas dos cabeçalhos
+
+        // Linha pontilhada abaixo do cabeçalho
+        yStart -= cellHeight;
+
+        // Preencher os dados da lista (genérico)
+        for (Object obj : lista) {
+            if (yStart < margin + cellHeight) {
+                // Nova página se atingir o limite
+                contentStream.close();
+                page = new PDPage(landscape); // Nova página também em paisagem
+                document.addPage(page);
+                contentStream = new PDPageContentStream(document, page);
+                yStart = page.getMediaBox().getHeight() - margin;
+
+                // Recria cabeçalhos na nova página
+                xPos = margin;
+                for (int i = 0; i < colunas.length; i++) {
+                    contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+                    contentStream.beginText();
+                    contentStream.setFont(font, 7);
+                    float textWidth = (font.getStringWidth(colunas[i]) / 1000) * 8;
+                    contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin); // Centraliza o texto
+                    contentStream.showText(colunas[i]);
+                    contentStream.endText();
+                    xPos += colWidths[i];
+                }
+                contentStream.stroke();
+                yStart -= cellHeight;
+            }
+
+            // Desenhar os dados do objeto em cada célula
+            xPos = margin;
+            for (int i = 0; i < colunas.length; i++) {
+                String valor = "N/A"; // Valor padrão para coluna não encontrada
+
+                // Verificar a instância e usar métodos específicos de cada classe
+                switch (colunas[i]) {
+                    // Pessoa
+                    case "Nome":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getNome();
+                        break;
+                    case "Data Nascimento":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getDataNascimento();
+                        break;
+                    case "CPF":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getCpf();
+                        break;
+                    case "Telefone":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getTelefone();
+                        break;
+                    case "Rua":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getRua();
+                        break;
+                    case "Bairro":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getBairro();
+                        break;
+                    case "Cidade":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getCidade();
+                        break;
+                    case "Estado":
+                        if (obj instanceof Pessoa) valor = ((Pessoa) obj).getEstado();
+                        break;
+
+                    // Aluno
+                    case "Matricula":
+                        if (obj instanceof Aluno) valor = ((Aluno) obj).getMatricula();
+                        break;
+                    case "Periodo":
+                        if (obj instanceof Aluno) valor = String.valueOf(((Aluno) obj).getPeriodo());
+                        break;
+                    case "Finalizado":
+                        if (obj instanceof Aluno) valor = String.valueOf(((Aluno) obj).isFinalizado());
+                        break;
+
+                    // Professor
+                    case "Data Admissao":
+                        if (obj instanceof Professor) valor = ((Professor) obj).getDataAdmissao();
+                        break;
+                    case "Chefia":
+                        if (obj instanceof Professor) valor = String.valueOf(((Professor) obj).getChefia());
+                        break;
+                    case "Coordenacao":
+                        if (obj instanceof Professor) valor = String.valueOf(((Professor) obj).getCoordenacao());
+                        break;
+                    case "Salario":
+                        if (obj instanceof Professor) valor = String.valueOf(((Professor) obj).getSalario());
+                        break;
+
+                    // Egresso
+                    case "Profissao":
+                        if (obj instanceof Egresso) valor = ((Egresso) obj).getProfissao();
+                        break;
+                    case "Faixa Salarial":
+                        if (obj instanceof Egresso) valor = ((Egresso) obj).getFaixaSalarial();
+                        break;
+                    case "Curso Anterior":
+                        if (obj instanceof Egresso) valor = ((Egresso) obj).getCursoAnterior();
+                        break;
+                    case "Curso Atual":
+                        if (obj instanceof Egresso) valor = ((Egresso) obj).getCursoAtual();
+                        break;
+
+                    // Turma
+                    case "Professor Responsável":
+                        if (obj instanceof Turma) valor = ((Turma) obj).getProfessorResponsvel();
+                        break;
+                    case "Turma":
+                        if (obj instanceof Turma) valor = ((Turma) obj).getNome();
+                        break;
+                    case "Código":
+                        if (obj instanceof Turma) valor = ((Turma) obj).getCodigo();
+                        break;
+                    case "Número de Avaliações":
+                        if (obj instanceof Turma) valor = String.valueOf(((Turma) obj).getnAvaliacoes());
+                        break;
+                }
+
+                contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+                contentStream.beginText();
+                contentStream.setFont(fontNormal, 7);
+                float textWidth = (fontNormal.getStringWidth(valor) / 1000) * 8;
+                contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin);
+                contentStream.showText(valor);
+                contentStream.endText();
+                xPos += colWidths[i];
+            }
+            contentStream.stroke();
+            yStart -= cellHeight;
+        }
+
+        // Fecha o fluxo de conteúdo
+        contentStream.close();
+
+        // Salvar o documento PDF
+        document.save(filePath);
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 }
+
+
+// Função para gerar nome de arquivo único
+    public String gerarNomeUnico(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            return filePath; // Se o arquivo não existe, retorna o caminho original
+        }
+
+        String baseName = filePath.substring(0, filePath.lastIndexOf('.'));
+        String extension = filePath.substring(filePath.lastIndexOf('.'));
+
+        int counter = 1;
+        while (file.exists()) {
+            filePath = baseName + " (" + counter + ")" + extension;
+            file = new File(filePath);
+            counter++;
+        }
+        return filePath;
+    }
+
+}
+
 
 
 

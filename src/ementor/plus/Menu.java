@@ -46,6 +46,9 @@ public class Menu extends javax.swing.JFrame {
         botaoCadastrarEgresso = new javax.swing.JButton();
         botaoListarEgresso = new javax.swing.JButton();
         PDF = new javax.swing.JButton();
+        pdfTurma = new javax.swing.JButton();
+        pdfProfessor = new javax.swing.JButton();
+        pdfEgresso = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +138,27 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        pdfTurma.setText("PDF TURMA");
+        pdfTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdfTurmaActionPerformed(evt);
+            }
+        });
+
+        pdfProfessor.setText("PDF PROFESSOR");
+        pdfProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdfProfessorActionPerformed(evt);
+            }
+        });
+
+        pdfEgresso.setText("PDF EGRESSO");
+        pdfEgresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdfEgressoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,8 +190,14 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(310, 310, 310)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(90, 90, 90)
+                        .addComponent(pdfEgresso)
+                        .addGap(18, 18, 18)
+                        .addComponent(pdfProfessor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pdfTurma)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -188,9 +218,13 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(botaoListarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoListarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoListarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pdfTurma)
+                    .addComponent(pdfProfessor)
+                    .addComponent(pdfEgresso))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,18 +256,31 @@ public class Menu extends javax.swing.JFrame {
                                
     
     private void PDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PDFActionPerformed
-        ArrayList <Aluno> ListaAlunos = new ArrayList(); 
+        ArrayList <Object> ListaAlunos = new ArrayList(); 
         
         Aluno busca = new Aluno();
-        ListaAlunos = busca.mostrarAlunos();
+        ListaAlunos = (ArrayList<Object>) (Object) busca.mostrarAlunos();
         String[] colunas = {
-        "Nome", "CPF", "Data Nascimento", "Telefone", 
-        "Rua", "Bairro", "Cidade", "Estado", 
-        "Data Admissao", "Chefia", "Coordenacao"
+            // Pessoa
+            "Nome",
+            "Data Nascimento",
+            "CPF",
+            "Telefone",
+            "Rua",
+            "Bairro",
+            "Cidade",
+            "Estado",
+
+            // Aluno
+            "Matricula",
+            "Periodo",
+            "Finalizado"
         };
-        String filePath = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorio.pdf";
+
+        String filePath = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioaluno.pdf";
+        String subtitulo = "Alunos";
         PDFGenerator pdf = new PDFGenerator();
-        pdf.gerarPDF(colunas,ListaAlunos, filePath);
+        pdf.gerarPDF(colunas,ListaAlunos, filePath, subtitulo);
         JOptionPane.showMessageDialog(null, "PDF gerado com sucesso!");
 
 
@@ -268,6 +315,88 @@ public class Menu extends javax.swing.JFrame {
         CadastroTurma turma = new CadastroTurma();
         turma.setVisible(true);
     }//GEN-LAST:event_botaoCadastrarTurmaActionPerformed
+
+    private void pdfProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfProfessorActionPerformed
+        ArrayList<Object> ListaProfessores = new ArrayList<>();
+
+        Professor buscaProfessor = new Professor();
+        ListaProfessores = (ArrayList<Object>) (Object) buscaProfessor.mostrarProfessor();
+
+        String[] colunasProfessores = {
+            // Pessoa
+            "Nome",
+            "Data Nascimento",
+            "CPF",
+            "Telefone",
+            "Rua",
+            "Bairro",
+            "Cidade",
+            "Estado",
+
+            // Professor
+            "Data Admissao",
+            "Chefia",
+            "Coordenacao",
+            "Salario"
+        };
+
+        String filePathProfessores = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioprofessor.pdf";
+        String subtituloProfessores = "Professores";
+        PDFGenerator pdf = new PDFGenerator();
+        pdf.gerarPDF(colunasProfessores, ListaProfessores, filePathProfessores, subtituloProfessores);
+        JOptionPane.showMessageDialog(null, "PDF gerado com sucesso!");
+
+    }//GEN-LAST:event_pdfProfessorActionPerformed
+
+    private void pdfEgressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfEgressoActionPerformed
+        ArrayList<Object> ListaEgressos = new ArrayList<>();
+        Egresso buscaEgresso = new Egresso();
+        ListaEgressos = (ArrayList<Object>) (Object) buscaEgresso.mostrarEgressos();
+
+        String[] colunasEgressos = {
+            // Pessoa
+            "Nome",
+            "Data Nascimento",
+            "CPF",
+            "Telefone",
+            "Rua",
+            "Bairro",
+            "Cidade",
+            "Estado",
+
+            // Egresso
+            "Profissao",
+            "Faixa Salarial",
+            "Curso Anterior",
+            "Curso Atual"
+        };
+
+        String filePathEgressos = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioegresso.pdf";
+        String subtituloEgressos = "Egressos";
+        PDFGenerator pdf = new PDFGenerator();
+        pdf.gerarPDF(colunasEgressos, ListaEgressos, filePathEgressos, subtituloEgressos);
+        JOptionPane.showMessageDialog(null, "PDF gerado com sucesso!");
+    }//GEN-LAST:event_pdfEgressoActionPerformed
+
+    private void pdfTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfTurmaActionPerformed
+        ArrayList<Object> ListaTurmas = new ArrayList<>();
+        Turma buscaTurma = new Turma();
+        ListaTurmas = (ArrayList<Object>) (Object) buscaTurma.mostrarTurmas();
+
+        String[] colunasTurmas = {
+            // Turma
+            "Professor Responsável",
+            "Nome",
+            "Código",
+            "Número de Avaliações"
+        };
+
+        String filePathTurmas = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioturma.pdf";
+        String subtituloTurmas = "Turmas";
+        PDFGenerator pdf = new PDFGenerator();
+        pdf.gerarPDF(colunasTurmas, ListaTurmas, filePathTurmas, subtituloTurmas);
+        JOptionPane.showMessageDialog(null, "PDF gerado com sucesso!");
+    }//GEN-LAST:event_pdfTurmaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,5 +445,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton botaoListarTurma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton pdfEgresso;
+    private javax.swing.JButton pdfProfessor;
+    private javax.swing.JButton pdfTurma;
     // End of variables declaration//GEN-END:variables
 }
