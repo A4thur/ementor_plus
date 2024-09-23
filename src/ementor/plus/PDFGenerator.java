@@ -30,11 +30,7 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
 public class PDFGenerator {
 
-  
-
-
-
-public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath, String subtitulo) {
+    public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath, String subtitulo) {
     try (PDDocument document = new PDDocument()) {
         // Gerar nome de arquivo único se o original já existir
         filePath = gerarNomeUnico(filePath);
@@ -97,17 +93,20 @@ public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath,
         float xPos = margin;
         for (int i = 0; i < colunas.length; i++) {
             contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+            contentStream.setNonStrokingColor(220 / 255f, 220 / 255f, 220 / 255f); // Cor de fundo do cabeçalho
+            contentStream.fill(); // Preenche a célula
+            contentStream.setNonStrokingColor(0, 0, 0); // Cor da borda
+            contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+            contentStream.stroke();
+
             contentStream.beginText();
-            contentStream.setFont(font, 7); // Fonte tamanho 8 para cabeçalhos
+            contentStream.setFont(font, 8); // Fonte maior para cabeçalhos
             float textWidth = (font.getStringWidth(colunas[i]) / 1000) * 8;
-            contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin); // Centraliza o texto
+            contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin);
             contentStream.showText(colunas[i]);
             contentStream.endText();
             xPos += colWidths[i];
         }
-        contentStream.stroke(); // Desenhar as bordas dos cabeçalhos
-
-        // Linha pontilhada abaixo do cabeçalho
         yStart -= cellHeight;
 
         // Preencher os dados da lista (genérico)
@@ -115,7 +114,7 @@ public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath,
             if (yStart < margin + cellHeight) {
                 // Nova página se atingir o limite
                 contentStream.close();
-                page = new PDPage(landscape); // Nova página também em paisagem
+                page = new PDPage(landscape);
                 document.addPage(page);
                 contentStream = new PDPageContentStream(document, page);
                 yStart = page.getMediaBox().getHeight() - margin;
@@ -124,15 +123,20 @@ public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath,
                 xPos = margin;
                 for (int i = 0; i < colunas.length; i++) {
                     contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+                    contentStream.setNonStrokingColor(220 / 255f, 220 / 255f, 220 / 255f); // Cor de fundo do cabeçalho
+                    contentStream.fill(); // Preenche a célula
+                    contentStream.setNonStrokingColor(0, 0, 0); // Cor da borda
+                    contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+                    contentStream.stroke();
+
                     contentStream.beginText();
-                    contentStream.setFont(font, 7);
+                    contentStream.setFont(font, 8);
                     float textWidth = (font.getStringWidth(colunas[i]) / 1000) * 8;
-                    contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin); // Centraliza o texto
+                    contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin);
                     contentStream.showText(colunas[i]);
                     contentStream.endText();
                     xPos += colWidths[i];
                 }
-                contentStream.stroke();
                 yStart -= cellHeight;
             }
 
@@ -212,7 +216,7 @@ public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath,
                     case "Professor Responsável":
                         if (obj instanceof Turma) valor = ((Turma) obj).getProfessorResponsvel();
                         break;
-                    case "Turma":
+                    case "Nome da Turma":
                         if (obj instanceof Turma) valor = ((Turma) obj).getNome();
                         break;
                     case "Código":
@@ -224,9 +228,15 @@ public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath,
                 }
 
                 contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+                contentStream.setNonStrokingColor(255 / 255f, 255 / 255f, 255 / 255f); // Cor de fundo dos dados
+                contentStream.fill(); // Preenche a célula
+                contentStream.setNonStrokingColor(0, 0, 0); // Cor da borda
+                contentStream.addRect(xPos, yStart - cellHeight, colWidths[i], cellHeight);
+                contentStream.stroke();
+
                 contentStream.beginText();
                 contentStream.setFont(fontNormal, 7);
-                float textWidth = (fontNormal.getStringWidth(valor) / 1000) * 8;
+                float textWidth = (fontNormal.getStringWidth(valor) / 1000) * 7;
                 contentStream.newLineAtOffset(xPos + (colWidths[i] - textWidth) / 2, yStart - cellHeight + cellMargin);
                 contentStream.showText(valor);
                 contentStream.endText();
@@ -241,8 +251,8 @@ public void gerarPDF(String[] colunas, ArrayList<Object> lista, String filePath,
 
         // Salvar o documento PDF
         document.save(filePath);
-
-    } catch (Exception e) {
+        System.out.println("PDF gerado com sucesso: " + filePath);
+    } catch (IOException e) {
         e.printStackTrace();
     }
 }

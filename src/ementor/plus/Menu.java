@@ -386,7 +386,7 @@ public class Menu extends javax.swing.JFrame {
         String[] colunasTurmas = {
             // Turma
             "Professor Responsável",
-            "Nome",
+            "Nome da Turma",
             "Código",
             "Número de Avaliações"
         };
