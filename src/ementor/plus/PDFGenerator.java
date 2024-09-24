@@ -251,7 +251,6 @@ public class PDFGenerator {
 
         // Salvar o documento PDF
         document.save(filePath);
-        System.out.println("PDF gerado com sucesso: " + filePath);
     } catch (IOException e) {
         e.printStackTrace();
     }

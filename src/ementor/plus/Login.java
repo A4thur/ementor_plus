@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 3, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("EMENTOR+");
 
         campoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -58,17 +59,20 @@ public class Login extends javax.swing.JFrame {
         campoSenha.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Senha:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Usuário:");
 
         botaoLogin.setBackground(new java.awt.Color(102, 204, 255));
         botaoLogin.setFont(new java.awt.Font("Noto Sans Nerd Font", 1, 24)); // NOI18N
+        botaoLogin.setForeground(new java.awt.Color(153, 153, 153));
         botaoLogin.setText("Entrar");
         botaoLogin.setToolTipText("");
         botaoLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botaoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoLoginActionPerformed(evt);

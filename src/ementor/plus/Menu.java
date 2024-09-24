@@ -49,16 +49,26 @@ public class Menu extends javax.swing.JFrame {
         pdfTurma = new javax.swing.JButton();
         pdfProfessor = new javax.swing.JButton();
         pdfEgresso = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Menu");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        botaoCadastrarAluno.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarAluno.setBackground(new java.awt.Color(102, 102, 102));
+        botaoCadastrarAluno.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoCadastrarAluno.setForeground(new java.awt.Color(255, 255, 255));
         botaoCadastrarAluno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoCadastrarAluno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoCadastrarAluno.setLabel("Cadastrar Aluno");
         botaoCadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,180 +76,238 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        botaoListarAlunos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoListarAlunos.setBackground(new java.awt.Color(102, 102, 102));
+        botaoListarAlunos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoListarAlunos.setForeground(new java.awt.Color(255, 255, 255));
         botaoListarAlunos.setText("Listar Alunos");
         botaoListarAlunos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoListarAlunos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoListarAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarAlunosActionPerformed(evt);
             }
         });
 
-        botaoCadastrarTurma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarTurma.setBackground(new java.awt.Color(102, 102, 102));
+        botaoCadastrarTurma.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoCadastrarTurma.setForeground(new java.awt.Color(255, 255, 255));
         botaoCadastrarTurma.setText("Cadastrar Turma");
         botaoCadastrarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoCadastrarTurma.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoCadastrarTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCadastrarTurmaActionPerformed(evt);
             }
         });
 
-        botaoListarTurma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoListarTurma.setBackground(new java.awt.Color(102, 102, 102));
+        botaoListarTurma.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoListarTurma.setForeground(new java.awt.Color(255, 255, 255));
         botaoListarTurma.setText("Listar Turma");
         botaoListarTurma.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoListarTurma.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoListarTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarTurmaActionPerformed(evt);
             }
         });
 
-        botaoListarProfessor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoListarProfessor.setBackground(new java.awt.Color(102, 102, 102));
+        botaoListarProfessor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoListarProfessor.setForeground(new java.awt.Color(255, 255, 255));
         botaoListarProfessor.setText("Listar Professor");
         botaoListarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoListarProfessor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoListarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarProfessorActionPerformed(evt);
             }
         });
 
-        botaoCadastrarProfessor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarProfessor.setBackground(new java.awt.Color(102, 102, 102));
+        botaoCadastrarProfessor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoCadastrarProfessor.setForeground(new java.awt.Color(255, 255, 255));
         botaoCadastrarProfessor.setText("Cadastrar Professor");
         botaoCadastrarProfessor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoCadastrarProfessor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoCadastrarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCadastrarProfessorActionPerformed(evt);
             }
         });
 
-        botaoCadastrarEgresso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoCadastrarEgresso.setBackground(new java.awt.Color(102, 102, 102));
+        botaoCadastrarEgresso.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoCadastrarEgresso.setForeground(new java.awt.Color(255, 255, 255));
         botaoCadastrarEgresso.setText("Cadastrar Egresso");
         botaoCadastrarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoCadastrarEgresso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoCadastrarEgresso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCadastrarEgressoActionPerformed(evt);
             }
         });
 
-        botaoListarEgresso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botaoListarEgresso.setBackground(new java.awt.Color(102, 102, 102));
+        botaoListarEgresso.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoListarEgresso.setForeground(new java.awt.Color(255, 255, 255));
         botaoListarEgresso.setText("Listar Egresso");
         botaoListarEgresso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoListarEgresso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoListarEgresso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoListarEgressoActionPerformed(evt);
             }
         });
 
+        PDF.setBackground(new java.awt.Color(102, 102, 102));
         PDF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        PDF.setForeground(new java.awt.Color(255, 255, 255));
         PDF.setText("PDF ALUNO");
         PDF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        PDF.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         PDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PDFActionPerformed(evt);
             }
         });
 
+        pdfTurma.setBackground(new java.awt.Color(102, 102, 102));
+        pdfTurma.setFont(new java.awt.Font("Noto Sans Nerd Font", 1, 14)); // NOI18N
+        pdfTurma.setForeground(new java.awt.Color(255, 255, 255));
         pdfTurma.setText("PDF TURMA");
+        pdfTurma.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pdfTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pdfTurmaActionPerformed(evt);
             }
         });
 
+        pdfProfessor.setBackground(new java.awt.Color(102, 102, 102));
+        pdfProfessor.setFont(new java.awt.Font("Noto Sans Nerd Font", 1, 14)); // NOI18N
+        pdfProfessor.setForeground(new java.awt.Color(255, 255, 255));
         pdfProfessor.setText("PDF PROFESSOR");
+        pdfProfessor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pdfProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pdfProfessorActionPerformed(evt);
             }
         });
 
+        pdfEgresso.setBackground(new java.awt.Color(102, 102, 102));
+        pdfEgresso.setFont(new java.awt.Font("Noto Sans Nerd Font", 1, 14)); // NOI18N
+        pdfEgresso.setForeground(new java.awt.Color(255, 255, 255));
         pdfEgresso.setText("PDF EGRESSO");
+        pdfEgresso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pdfEgresso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pdfEgressoActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(102, 204, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/picture_as_pdf_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+
+        jButton2.setBackground(new java.awt.Color(102, 204, 255));
+        jButton2.setBorderPainted(false);
+
+        jButton3.setBackground(new java.awt.Color(102, 204, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/list_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+
+        jButton4.setBackground(new java.awt.Color(102, 204, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"))); // NOI18N
+        jButton4.setBorderPainted(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(661, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(649, 649, 649))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botaoListarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botaoListarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botaoCadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botaoCadastrarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botaoListarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botaoListarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botaoCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botaoCadastrarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(pdfEgresso)
-                        .addGap(18, 18, 18)
-                        .addComponent(pdfProfessor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pdfTurma)))
-                .addContainerGap(556, Short.MAX_VALUE))
+                    .addComponent(botaoListarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoCadastrarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pdfProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoListarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pdfTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoListarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pdfEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoListarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCadastrarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCadastrarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCadastrarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoListarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoListarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoListarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoListarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 398, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pdfTurma)
-                    .addComponent(pdfProfessor)
-                    .addComponent(pdfEgresso))
-                .addGap(29, 29, 29))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoCadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoListarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PDF, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botaoCadastrarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoListarEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(pdfProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoCadastrarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoListarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoListarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pdfTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pdfEgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(193, 193, 193))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -445,6 +513,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton botaoListarEgresso;
     private javax.swing.JButton botaoListarProfessor;
     private javax.swing.JButton botaoListarTurma;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton pdfEgresso;

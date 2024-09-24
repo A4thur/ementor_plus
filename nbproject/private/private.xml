@@ -6,9 +6,11 @@
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/AlunoTurma.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/CadastroTurma.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/PDFGenerator.java</file>
-            <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Menu.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Pessoa.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Conexoes.java</file>
+            <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Menu.java</file>
+            <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Login.java</file>
+            <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Egresso.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/TableNotas.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/editOrDeleteAluno.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/CadastroProfessor.java</file>
@@ -20,6 +22,7 @@
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/TableProfessor.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/TabelaAlunos.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/editOrDeleteTurma.java</file>
+            <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Professor.java</file>
             <file>file:/home/bergamini/Downloads/ementorp/ementor_plus/src/ementor/plus/Nota.java</file>
         </group>
     </open-files>
