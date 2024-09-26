@@ -6,6 +6,7 @@ package ementor.plus;
 
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,6 +48,9 @@ public class TabelaAlunos extends javax.swing.JFrame {
         TableAluno = new javax.swing.JTable();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        CCpf = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -88,13 +92,34 @@ public class TabelaAlunos extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("CPF");
+
+        CCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CCpfActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1489, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(519, 519, 519)
+                .addGap(70, 70, 70)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(127, 127, 127)
                 .addComponent(jRadioButton1)
                 .addGap(50, 50, 50)
                 .addComponent(jRadioButton2)
@@ -103,11 +128,14 @@ public class TabelaAlunos extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jLabel1)
+                    .addComponent(CCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -137,11 +165,40 @@ public class TabelaAlunos extends javax.swing.JFrame {
         jRadioButton1.setSelected(false);
         jRadioButton2.setSelected(true);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void CCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CCpfActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel Tabela = (DefaultTableModel) TableAluno.getModel();
+        ArrayList <Aluno> ListaAlunos;
+        
+        Aluno busca = new Aluno();
+        Tabela.setRowCount(0);
+        if(CCpf.getText().isEmpty()){
+            ListaAlunos = busca.mostrarAlunos();
+        }else{
+            ListaAlunos = busca.mostrarAlunos(CCpf.getText());
+        }
+        for(Aluno obj: ListaAlunos) {
+            Tabela.addRow(new Object[] {obj.nome, 
+                                        obj.dataNascimento,
+                                        obj.cpf,
+                                        obj.telefone,
+                                        obj.rua,
+                                        obj.bairro,
+                                        obj.cidade,
+                                        obj.estado, 
+                                        obj.getMatricula(),
+                                        obj.getPeriodo()});
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        ArrayList <Aluno> ListaAlunos = new ArrayList(); 
+        ArrayList <Aluno> ListaAlunos; 
         
         
         Aluno busca = new Aluno();
@@ -200,7 +257,10 @@ public class TabelaAlunos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CCpf;
     public static javax.swing.JTable TableAluno;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;

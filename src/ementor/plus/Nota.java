@@ -108,6 +108,23 @@ public class Nota {
         return notas;
     }
     
+    public ArrayList<Nota> mostrarNotaAv(int id, int avaliacao){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("aluno_turma_nota");
+        busca.addItem("alunoTurmaId", id);
+        busca.addItem("avaliacao", avaliacao);
+        ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
+        ArrayList<Nota> notas = new ArrayList<Nota>();
+        for(int i = 0; i<Resposta.size(); i++){
+            Nota nota = new Nota();
+            nota.setAlunoTurmaid(Resposta.get(i).getInt("alunoTurmaId"));
+            nota.setNota(Resposta.get(i).getFloat("nota"));
+            nota.setAvaliacao(Resposta.get(i).getInt("avaliacao"));
+            notas.add(nota);
+        }
+        return notas;
+    }
+    
     public boolean verificaAlunoTurma(int id, int avaliacao){
         Conexoes banco = new Conexoes();
         Dados busca = new Dados("aluno_turma_nota");

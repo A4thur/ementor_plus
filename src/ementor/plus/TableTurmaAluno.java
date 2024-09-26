@@ -56,6 +56,9 @@ public class TableTurmaAluno extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        CCpf = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,6 +98,15 @@ public class TableTurmaAluno extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setText("CPF");
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,12 +115,25 @@ public class TableTurmaAluno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(CCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -125,6 +150,36 @@ public class TableTurmaAluno extends javax.swing.JFrame {
         t.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AlunoTurma alunosTurma = new AlunoTurma();
+        DefaultTableModel Tabela = (DefaultTableModel) this.jTable1.getModel();
+        Tabela.setRowCount(0);
+        if (CCpf.getText().isEmpty()){
+            ArrayList<AlunoTurma> alunosturma = alunosTurma.mostrarCodigoTurma(codigo);
+            ArrayList<Aluno> alunos;
+            for(int i = 0; i<alunosturma.size(); i++){
+                Aluno aluno = new Aluno();
+                alunos = aluno.mostrarAlunos(alunosturma.get(i).getAlunoCPF());
+                Tabela.addRow(new Object[] {alunos.get(0).getNome(), 
+                                            alunosturma.get(i).getAlunoCPF(),
+                                            alunos.get(i).getMatricula(), 
+                                            alunosturma.get(i).getNotaMedia(),
+                                           });
+        }
+        }else{
+            int id = alunosTurma.AlunoTurmaId(CCpf.getText(), codigo);
+            AlunoTurma alunosturma = alunosTurma.mostrarAlunoTurmaId(id);
+            ArrayList<Aluno> alunos;
+            Aluno aluno = new Aluno();
+            alunos = aluno.mostrarAlunos(alunosturma.getAlunoCPF());
+            Tabela.addRow(new Object[] {alunos.get(0).getNome(), 
+                                        alunosturma.getAlunoCPF(),
+                                        alunos.get(0).getMatricula(), 
+                                        alunosturma.getNotaMedia(),
+                                       });
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,6 +220,9 @@ public class TableTurmaAluno extends javax.swing.JFrame {
     private String codigo;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CCpf;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

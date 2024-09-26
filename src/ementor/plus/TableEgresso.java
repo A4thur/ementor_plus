@@ -5,6 +5,7 @@
 package ementor.plus;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,6 +41,9 @@ public class TableEgresso extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaEgresso = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        CCpf = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,17 +63,40 @@ public class TableEgresso extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TabelaEgresso);
 
+        jLabel1.setText("CPF");
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(CCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(CCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,12 +106,42 @@ public class TableEgresso extends javax.swing.JFrame {
         editOrDeleteEgresso p = new editOrDeleteEgresso();
         p.setVisible(true);
     }//GEN-LAST:event_TabelaEgressoMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ArrayList <Egresso> ListaEgressos; 
+        DefaultTableModel Tabela = (DefaultTableModel) TableEgresso.TabelaEgresso.getModel();
+        Tabela.setRowCount(0);
+        
+        Egresso busca = new Egresso();
+        if (CCpf.getText().isEmpty()){
+            ListaEgressos = busca.mostrarEgressos();
+        }else{
+            ListaEgressos = busca.mostrarEgressos(CCpf.getText());
+        }
+        for(Egresso obj: ListaEgressos) {
+                Tabela.addRow(new Object[] {obj.nome, 
+                                            obj.dataNascimento,
+                                            obj.cpf, 
+                                            obj.telefone,
+                                            obj.rua,
+                                            obj.bairro,
+                                            obj.cidade,
+                                            obj.estado, 
+                                            obj.getMatricula(),
+                                            obj.getPeriodo(),
+                                            obj.getProfissao(),
+                                            obj.getFaixaSalarial(),
+                                            obj.getCursoAnterior(),
+                                            obj.getCursoAtual()});
+
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        ArrayList <Egresso> ListaEgressos = new ArrayList(); 
+        ArrayList <Egresso> ListaEgressos; 
         
         Egresso busca = new Egresso();
         ListaEgressos = busca.mostrarEgressos();
-        System.out.println(ListaEgressos.get(0).getCpf());
         DefaultTableModel Tabela = (DefaultTableModel) TableEgresso.TabelaEgresso.getModel();
        
         for(Egresso obj: ListaEgressos) {
@@ -148,7 +205,10 @@ public class TableEgresso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CCpf;
     public static javax.swing.JTable TabelaEgresso;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
