@@ -12,27 +12,57 @@ import javax.swing.table.DefaultTableModel;
  * @author carlo
  */
 public class TableNotas extends javax.swing.JFrame {
+    
+    private int cont = 0;
+    private int id;
+    private String codigo = null;
+    private String cpf = null;
 
     /**
      * Creates new form TableNotas
      */
     public TableNotas(int id) {
         initComponents();
+        this.id = id;
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt, id);
+                formWindowOpened(evt);
             }
         });
     }
     
-    private void formWindowOpened(java.awt.event.WindowEvent evt, int id) {
+    public TableNotas(int id, String codigo) {
+        initComponents();
+        this.id = id;
+        this.codigo = codigo;
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+    }
+    
+    public TableNotas(int id, String codigo, String cpf) {
+        initComponents();
+        this.id = id;
+        this.codigo = codigo;
+        this.cpf = cpf;
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+    }
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
         ArrayList<Nota> notas = new ArrayList();
         Nota nota = new Nota();
         
-        notas = nota.mostrarNota(id);
+        notas = nota.mostrarNota(this.id);
         
         DefaultTableModel Tabela = (DefaultTableModel) this.TabelaNotas.getModel();
         for(Nota obj: notas) {
+            cont++;
             Tabela.addRow(new Object[] {obj.getAvaliacao(), 
                                         obj.getNota()});
         }
@@ -49,6 +79,7 @@ public class TableNotas extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaNotas = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,7 +92,7 @@ public class TableNotas extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -69,6 +100,13 @@ public class TableNotas extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(TabelaNotas);
+
+        jButton1.setText("salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,17 +116,42 @@ public class TableNotas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) TabelaNotas.getModel();
+        for(int i = 0; i<cont; i++){
+            float nota = Float.valueOf(model.getValueAt(i, 1).toString()).floatValue();
+            Nota notas = new Nota();
+            notas.setNota(nota);
+            notas.atualiza(this.id, i);
+        }
+        if(codigo != null && cpf != null){
+            TableTurma t = new TableTurma(cpf);
+            t.setVisible(true);
+        }else if(codigo != null){
+            TableTurmaAluno t = new TableTurmaAluno(this.codigo);
+            t.setVisible(true);
+        }
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,6 +179,7 @@ public class TableNotas extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TableNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -124,9 +188,12 @@ public class TableNotas extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaNotas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,7 +23,6 @@ public class Turma {
         this.professorResponsvel = professorResponsvel;
         this.nAvaliacoes = nAvaliacoes;
     }
-
     
     public Turma(){
         this.nome = "";
@@ -91,8 +90,7 @@ public class Turma {
             Dados busca = new Dados("turma");
             turma.addItem("nome", this.nome);
             turma.addItem("professorCPF", this.professorResponsvel);
-            turma.addItem("numAvaliacoes", this.nAvaliacoes);
-            turma.addItem("codigo", this.codigo);
+            //turma.addItem("numAvaliacoes", this.nAvaliacoes);
             busca.addItem("codigo", Codigo);
             banco.atualizaSQL(turma, busca);
         }catch(SQLDuplicateException | SQLPresencaException e){
