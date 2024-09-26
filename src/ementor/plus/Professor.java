@@ -41,7 +41,12 @@ public class Professor extends Pessoa{
     public void setDataAdmissao(String dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
-
+    public String Chefia(){
+        if(!this.chefia == true){
+            return "Sim";
+        } 
+        return "Não";
+    }
     public boolean getChefia() {
         return chefia;
     }
@@ -49,7 +54,12 @@ public class Professor extends Pessoa{
     public void setChefia(boolean chefia) {
         this.chefia = chefia;
     }
-
+    public String Coordenacao(){
+        if(!this.coordenacao == true){
+            return "Sim";
+        } 
+        return "Não";
+    }
     public boolean getCoordenacao() {
         return coordenacao;
     }

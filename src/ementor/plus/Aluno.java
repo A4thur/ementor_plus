@@ -39,7 +39,12 @@ public class Aluno extends Pessoa {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-
+    public String Finalizado(){
+        if(!this.finalizado == true){
+            return "Sim";
+        } 
+        return "Não";
+    }
     public boolean isFinalizado() {
         return finalizado;
     }

@@ -391,7 +391,7 @@ public class Menu extends javax.swing.JFrame {
             "Finalizado"
         };
 
-        String filePath = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioaluno.pdf";
+        String filePath = "relatorioaluno";
         String subtitulo = "Alunos";
         PDFGenerator pdf = new PDFGenerator();
         pdf.gerarPDF(colunas,ListaAlunos, filePath, subtitulo);
@@ -454,7 +454,7 @@ public class Menu extends javax.swing.JFrame {
             "Salario"
         };
 
-        String filePathProfessores = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioprofessor.pdf";
+        String filePathProfessores = "relatorioprofessor";
         String subtituloProfessores = "Professores";
         PDFGenerator pdf = new PDFGenerator();
         pdf.gerarPDF(colunasProfessores, ListaProfessores, filePathProfessores, subtituloProfessores);
@@ -485,7 +485,7 @@ public class Menu extends javax.swing.JFrame {
             "Curso Atual"
         };
 
-        String filePathEgressos = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioegresso.pdf";
+        String filePathEgressos = "relatorioegresso";
         String subtituloEgressos = "Egressos";
         PDFGenerator pdf = new PDFGenerator();
         pdf.gerarPDF(colunasEgressos, ListaEgressos, filePathEgressos, subtituloEgressos);
@@ -505,7 +505,7 @@ public class Menu extends javax.swing.JFrame {
             "Número de Avaliações"
         };
 
-        String filePathTurmas = "/home/bergamini/Downloads/ementorp/ementor_plus/relatorioturma.pdf";
+        String filePathTurmas = "relatorioturma";
         String subtituloTurmas = "Turmas";
         PDFGenerator pdf = new PDFGenerator();
         pdf.gerarPDF(colunasTurmas, ListaTurmas, filePathTurmas, subtituloTurmas);
