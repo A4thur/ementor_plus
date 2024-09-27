@@ -336,7 +336,7 @@ public class editOrDeleteEgresso extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"Preencha o CPF!","ERRO",JOptionPane.ERROR_MESSAGE);
                 } else {
                     Egresso egresso  = new Egresso();
-                    egresso.atualiza(CCpf.getText());
+                    egresso.exclui(CCpf.getText());
                     JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 }

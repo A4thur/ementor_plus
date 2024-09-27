@@ -135,6 +135,15 @@ public class Professor extends Pessoa{
     public void exclui(String CPF){
         try{
             if(!this.verificaProfessor(CPF)) throw new SQLPresencaException();
+            Turma turma = new Turma();
+            if(turma.verificaProfessorTurma(CPF)){
+                ArrayList<Turma> turmas = turma.mostrarTurmasProfessor(CPF);
+                System.out.println(turmas.size());
+                for(Turma turm: turmas){
+                    System.out.println(turm.getCodigo());
+                    turma.exclui(turm.getCodigo());
+                }
+            }
             Conexoes banco = new Conexoes();
             Dados busca = new Dados("professor");
             busca.addItem("pessoaCPF", CPF);

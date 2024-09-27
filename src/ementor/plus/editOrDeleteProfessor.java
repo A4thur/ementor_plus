@@ -314,12 +314,12 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
         try{
             if(CCpf.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Preencha o CPF!","ERRO",JOptionPane.ERROR_MESSAGE);
-                } else {
-                    Professor professor = new Professor();
-                    professor.exclui(CCpf.getText());
-                    JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                }
+            } else {
+                Professor professor = new Professor();
+                professor.exclui(CCpf.getText());
+                JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            }
        }
        catch(Exception e){
            JOptionPane.showMessageDialog(this, 

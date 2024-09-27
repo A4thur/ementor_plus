@@ -102,6 +102,7 @@ public class Egresso extends Aluno{
     
     public void exclui(String CPF){
         try{
+            System.out.println("Aqui");
             if(!this.verificaEgresso(CPF)) throw new SQLPresencaException();
             Conexoes banco = new Conexoes();
             Dados busca = new Dados("egresso");

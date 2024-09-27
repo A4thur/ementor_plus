@@ -101,6 +101,10 @@ public class Turma {
     public void exclui(String Codigo){
         try{
             if(!this.verificaTurma(Codigo)) throw new SQLPresencaException();
+            AlunoTurma aluno = new AlunoTurma();
+            if(aluno.verificaTurmaComAluno(Codigo)){
+                aluno.excluiAlunoTurmaTurma(Codigo);
+            }
             Conexoes banco = new Conexoes();
             Dados busca = new Dados("turma");
             busca.addItem("codigo", Codigo);
@@ -139,10 +143,35 @@ public class Turma {
         return turmas;
     }
     
+    public ArrayList<Turma> mostrarTurmasProfessor(String cpf){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("turma");
+        busca.addItem("professorCPF", cpf);
+        ArrayList<Dados> Resposta = banco.mostrarSQL(busca);
+        ArrayList<Turma> turmas = new ArrayList<Turma>();
+        for(int i = 0; i<Resposta.size(); i++){
+            Turma turma = new Turma();
+            turma.setCodigo(Resposta.get(i).getVarchar("codigo"));
+            turma.setNome(Resposta.get(i).getVarchar("nome"));
+            turma.setProfessorResponsvel(Resposta.get(i).getVarchar("professorCPF"));
+            turma.setnAvaliacoes(Resposta.get(i).getInt("numAvaliacoes"));
+            turmas.add(turma);
+        }
+        return turmas;
+    }
+    
     public boolean verificaTurma(String Codigo){
         Conexoes banco = new Conexoes();
         Dados busca = new Dados("turma");
         busca.addItem("codigo", Codigo);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
+    }
+    
+    public boolean verificaProfessorTurma(String cpf){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("turma");
+        busca.addItem("professorCPF", cpf);
         boolean resposta = banco.verificaOcorrencia(busca);
         return resposta;
     }

@@ -133,9 +133,18 @@ public class Nota {
         boolean resposta = banco.verificaOcorrencia(busca);
         return resposta;
     }
+    
+    public boolean verificaNotaEmTurma(int id){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("aluno_turma_nota");
+        busca.addItem("alunoTurmaId", id);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
+    }
+    
     public void excluirNotas(int id){
         try{
-            if(!this.verificaAlunoTurma(id, avaliacao)) throw new SQLPresencaException();
+            if(!this.verificaNotaEmTurma(id)) throw new SQLPresencaException();
             Conexoes banco = new Conexoes();
             Dados busca = new Dados("aluno_turma_nota");
             busca.addItem("alunoTurmaId", id);

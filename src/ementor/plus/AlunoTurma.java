@@ -72,7 +72,7 @@ public class AlunoTurma {
             banco.insereSQL(alunoTurma);
             id = banco.mostrarSQLId(busca);
             Turma turma = new Turma();
-            turma.mostraTurma(this.codigoTurma);
+            turma = turma.mostraTurma(this.codigoTurma);
             for(int i = 0;i<turma.getnAvaliacoes();i++){
                 Nota nota = new Nota();
                 nota.setAlunoTurmaid(id);
@@ -114,6 +114,42 @@ public class AlunoTurma {
             busca.addItem("alunoCPF", cpf);
             busca.addItem("codigoTurma", turma);
             id = banco.mostrarSQLId(busca);
+            banco.exclusaoSQL(busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void excluiAlunoTurmaAluno(String cpf){
+        int id;
+        try{
+            if(!this.verificaAlunoEmTurma(cpf)) throw new SQLPresencaException();
+            Nota notas = new Nota();
+            Conexoes banco = new Conexoes();
+            Dados busca = new Dados("aluno_turma");
+            busca.addItem("alunoCPF", cpf);
+            ArrayList<AlunoTurma> turmas = this.mostrarAlunoTurma(cpf);
+            for(AlunoTurma turma: turmas){
+                notas.excluirNotas(turma.AlunoTurmaId(turma.getAlunoCPF(), turma.getCodigoTurma()));
+            }
+            banco.exclusaoSQL(busca);
+        }catch(SQLPresencaException e){
+            JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void excluiAlunoTurmaTurma(String codigo){
+        int id;
+        try{
+            if(!this.verificaTurmaComAluno(codigo)) throw new SQLPresencaException();
+            Nota notas = new Nota();
+            Conexoes banco = new Conexoes();
+            Dados busca = new Dados("aluno_turma");
+            busca.addItem("codigoTurma", codigo);
+            ArrayList<AlunoTurma> turmas = this.mostrarCodigoTurma(codigo);
+            for(AlunoTurma turma: turmas){
+                notas.excluirNotas(turma.AlunoTurmaId(turma.getAlunoCPF(), turma.getCodigoTurma()));
+            }
             banco.exclusaoSQL(busca);
         }catch(SQLPresencaException e){
             JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -186,6 +222,22 @@ public class AlunoTurma {
         return resposta;
     }
     
+    public boolean verificaAlunoEmTurma(String Aluno){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("aluno_turma");
+        busca.addItem("alunoCPF", Aluno);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
+    }
+    
+    public boolean verificaTurmaComAluno(String Codigo){
+        Conexoes banco = new Conexoes();
+        Dados busca = new Dados("aluno_turma");
+        busca.addItem("codigoTurma", Codigo);
+        boolean resposta = banco.verificaOcorrencia(busca);
+        return resposta;
+    }
+    
     public boolean verificaAlunoTurma(int id){
         Conexoes banco = new Conexoes();
         Dados busca = new Dados("aluno_turma");
@@ -193,6 +245,7 @@ public class AlunoTurma {
         boolean resposta = banco.verificaOcorrencia(busca);
         return resposta;
     }
+    
     public void atualizaId(int id){
         try{
             if(!this.verificaAlunoTurma(id)) throw new SQLPresencaException();

@@ -111,12 +111,23 @@ public class Aluno extends Pessoa {
     
     public void exclui(String CPF){
         try{
-            if(!this.verificaAluno(CPF)) throw new SQLPresencaException();
-            Conexoes banco = new Conexoes();
-            Dados busca = new Dados("aluno");
-            busca.addItem("pessoaCPF", CPF);
-            banco.exclusaoSQL(busca);
-            super.exclui(CPF);
+            Egresso egresso = new Egresso();
+            AlunoTurma turma = new AlunoTurma();
+            System.out.println("Aqui");
+            if(turma.verificaAlunoEmTurma(CPF)){
+                turma.excluiAlunoTurmaAluno(CPF);
+                System.out.println("Aqui");
+            }
+            if(egresso.verificaEgresso(CPF)){
+                egresso.exclui(CPF);
+            }else{
+                if(!this.verificaAluno(CPF)) throw new SQLPresencaException();
+                Conexoes banco = new Conexoes();
+                Dados busca = new Dados("aluno");
+                busca.addItem("pessoaCPF", CPF);
+                banco.exclusaoSQL(busca);
+                super.exclui(CPF);
+            }
         }catch(SQLPresencaException e){
             JOptionPane.showMessageDialog(null, "Algum imprevisto ocorreu: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
