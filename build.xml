@@ -12,6 +12,10 @@
     <target name="compile">
         <mkdir dir="build/classes"/>
         <javac srcdir="src" destdir="build/classes" classpathref="classpath"/>
+        <!-- Copia os arquivos de recursos para o diretório de build -->
+        <copy todir="build/classes">
+            <fileset dir="src/resources" includes="**/*"/>
+        </copy>
     </target>
 
     <!-- Cria o JAR do projeto -->
@@ -30,3 +34,4 @@
         <delete dir="dist"/>
     </target>
 </project>
+

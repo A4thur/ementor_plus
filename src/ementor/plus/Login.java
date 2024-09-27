@@ -6,6 +6,7 @@ package ementor.plus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -170,21 +171,28 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_campoUsuarioActionPerformed
     private void logar() {
         
-            String nome_usuario, senha_usuario;
-
-            nome_usuario = campoUsuario.getText();
-            senha_usuario = campoSenha.getText();
+            String nome_usuario = campoUsuario.getText();
+            String senha_usuario = new String(campoSenha.getPassword()); 
 
             Usuario user = new Usuario();
-            user = user.mostrarUsuarios(nome_usuario, senha_usuario);
-            if(user == null){
-                JOptionPane.showMessageDialog(null, "Senha ou usuario incorretos");
-            }
-            if (user.getNomeUsuario().equals(nome_usuario) && user.getSenha().equals(senha_usuario)) {  //.next() quer dizer que tem pelo menos 1 resultado
+            user = user.mostrarUsuarios(nome_usuario, senha_usuario); 
+
+            
+            if (user != null && user.getNomeUsuario().equals(nome_usuario) && user.getSenha().equals(senha_usuario)) {
                 Menu menu = new Menu();
                 menu.setVisible(true);
-                dispose();         
-            } 
+                dispose(); 
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha ou usuario incorretos");
+
+               
+                Disco disco = new Disco();
+                ArrayList<String> logErros = disco.LerNoDisco();
+                logErros.add("Senha ou usuario incorretos: " + nome_usuario);
+                disco.SalvarEmDisco(logErros);
+                System.err.println("Erro capturado e salvo: Senha ou usuario incorretos.");
+}
+
     }
     /**
      * @param args the command line arguments

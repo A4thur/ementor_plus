@@ -2,6 +2,7 @@
 <project name="MeuProjeto" basedir="." default="jar">
     <!-- Define o classpath para incluir os JARs do PDFBox e outras bibliotecas -->
     <path id="classpath">
+        <!-- Incluir todos os JARs no diretório lib -->
         <fileset dir="lib">
             <include name="*.jar"/>
         </fileset>

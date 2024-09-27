@@ -70,11 +70,11 @@ public class editOrDeleteEgresso extends javax.swing.JFrame {
 
         jLabel14.setText("jLabel14");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         excluir.setBackground(new java.awt.Color(0, 0, 0));
         excluir.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
@@ -91,7 +91,7 @@ public class editOrDeleteEgresso extends javax.swing.JFrame {
         editar.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
         editar.setForeground(new java.awt.Color(255, 255, 255));
         editar.setText("Editar");
-        editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);

@@ -64,7 +64,7 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
 
         jLabel11.setText("jLabel11");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -73,7 +73,7 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
         excluir.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
         excluir.setForeground(new java.awt.Color(255, 255, 255));
         excluir.setText("Excluir");
-        excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 excluirActionPerformed(evt);
@@ -84,7 +84,7 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
         editar.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
         editar.setForeground(new java.awt.Color(255, 255, 255));
         editar.setText("Editar");
-        editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -124,11 +124,11 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
 
         CChefia.setBackground(new java.awt.Color(102, 204, 255));
         CChefia.setText("Chefia");
-        CChefia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CChefia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         CCoordenacao.setBackground(new java.awt.Color(102, 204, 255));
         CCoordenacao.setText("Coordenação");
-        CCoordenacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CCoordenacao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setText("CPF:");

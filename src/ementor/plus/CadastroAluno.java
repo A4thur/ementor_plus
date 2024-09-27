@@ -4,6 +4,7 @@
  */
 package ementor.plus;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -258,13 +259,26 @@ public class CadastroAluno extends javax.swing.JFrame {
                     dispose();
                 }
        }
-       catch(Exception e){
-           JOptionPane.showMessageDialog(this, 
+       catch(Exception e) {
+            
+            JOptionPane.showMessageDialog(this, 
                 "Falha ao realizar o cadastro: " + e.getMessage(), 
                 "Erro", 
                 JOptionPane.ERROR_MESSAGE);
-        
-       }
+
+            
+            try {
+                Disco disco = new Disco();
+                ArrayList<String> logErros = disco.LerNoDisco(); 
+                logErros.add(e.toString());
+                disco.SalvarEmDisco(logErros);  
+                System.err.println("Erro capturado e salvo: " + e.toString()); 
+            } catch (Exception ex) {
+               
+                ex.printStackTrace();
+            }
+}
+
     }//GEN-LAST:event_salvarActionPerformed
 
     /**

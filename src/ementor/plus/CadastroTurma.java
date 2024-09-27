@@ -4,6 +4,7 @@
  */
 package ementor.plus;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -136,7 +137,7 @@ public class CadastroTurma extends javax.swing.JFrame {
                     .addComponent(CAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,9 +148,7 @@ public class CadastroTurma extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -174,6 +173,16 @@ public class CadastroTurma extends javax.swing.JFrame {
                 "Falha ao realizar o cadastro: " + e.getMessage(),
                 "Erro",
                 JOptionPane.ERROR_MESSAGE);
+              try {
+                Disco disco = new Disco();
+                ArrayList<String> logErros = disco.LerNoDisco(); 
+                logErros.add(e.toString());
+                disco.SalvarEmDisco(logErros);  
+                System.err.println("Erro capturado e salvo: " + e.toString()); 
+            } catch (Exception ex) {
+               
+                ex.printStackTrace();
+            }
 
         }
     }//GEN-LAST:event_salvarActionPerformed
