@@ -71,6 +71,7 @@ public class AlunoTurma {
             alunoTurma.addItem("notaMedia", this.notaMedia);
             banco.insereSQL(alunoTurma);
             id = banco.mostrarSQLId(busca);
+            System.out.println(id);
             Turma turma = new Turma();
             turma = turma.mostraTurma(this.codigoTurma);
             for(int i = 0;i<turma.getnAvaliacoes();i++){

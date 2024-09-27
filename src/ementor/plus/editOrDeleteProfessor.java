@@ -15,8 +15,10 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
     /**
      * Creates new form editOrDelete
      */
-    public editOrDeleteProfessor() {
+    public editOrDeleteProfessor(String cpf) {
+        this.cpf = cpf;
         initComponents();
+        
     }
 
     /**
@@ -55,8 +57,6 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
         CSalario = new javax.swing.JTextField();
         CChefia = new javax.swing.JCheckBox();
         CCoordenacao = new javax.swing.JCheckBox();
-        jLabel9 = new javax.swing.JLabel();
-        CCpf = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -130,9 +130,6 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
         CCoordenacao.setText("Coordenação");
         CCoordenacao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel9.setText("CPF:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -177,30 +174,24 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CEstado))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(editar)
-                                    .addComponent(jLabel12))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(CSalario))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(73, 73, 73)
-                                        .addComponent(excluir)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(CChefia, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(CCoordenacao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(43, 43, 43))
-                                    .addComponent(CCpf))))))
+                                .addComponent(CEstado))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CSalario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(CChefia, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CCoordenacao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(editar)
+                .addGap(73, 73, 73)
+                .addComponent(excluir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,11 +230,7 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(CDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(CCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CChefia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CCoordenacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,11 +238,11 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editar)
                     .addComponent(excluir))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,7 +275,7 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
                                     salario,
                                     CNome.getText(),                 // Nome
                                     CData.getText(),                 // Data
-                                    CCpf.getText(),                  // CPF
+                                    this.cpf,                  // CPF
                                     CTelefone.getText(),             // Telefone
                                     CRua.getText(),                  // Rua
                                     CBairro.getText(),               // Bairro
@@ -296,7 +283,7 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
                                     CEstado.getText()                // Estado
 );
 
-                    professor.atualiza(CCpf.getText());
+                    professor.atualiza(this.cpf);
                     JOptionPane.showMessageDialog(this, "Atualização realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 }
@@ -312,14 +299,12 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
         try{
-            if(CCpf.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Preencha o CPF!","ERRO",JOptionPane.ERROR_MESSAGE);
-            } else {
-                Professor professor = new Professor();
-                professor.exclui(CCpf.getText());
-                JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-            }
+            
+            Professor professor = new Professor();
+            professor.exclui(this.cpf);
+            JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+                
        }
        catch(Exception e){
            JOptionPane.showMessageDialog(this, 
@@ -361,17 +346,16 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editOrDeleteProfessor().setVisible(true);
+                new editOrDeleteProfessor("").setVisible(true);
             }
         });
     }
-
+    private String cpf;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CBairro;
     private javax.swing.JCheckBox CChefia;
     private javax.swing.JTextField CCidade;
     private javax.swing.JCheckBox CCoordenacao;
-    private javax.swing.JTextField CCpf;
     private javax.swing.JTextField CData;
     private javax.swing.JTextField CDataAdmissao;
     private javax.swing.JTextField CEstado;
@@ -391,7 +375,6 @@ public class editOrDeleteProfessor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

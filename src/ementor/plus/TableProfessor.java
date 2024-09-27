@@ -119,8 +119,12 @@ public class TableProfessor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaProfessorMouseClicked
-        editOrDeleteProfessor p = new editOrDeleteProfessor();
+        int selectedRow = TabelaProfessor.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TabelaProfessor.getModel();
+        String cpf = model.getValueAt(selectedRow, 2).toString();
+        editOrDeleteProfessor p = new editOrDeleteProfessor(cpf);
         p.setVisible(true);
+        
     }//GEN-LAST:event_TabelaProfessorMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

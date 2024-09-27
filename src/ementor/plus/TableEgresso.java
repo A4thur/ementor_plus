@@ -103,7 +103,10 @@ public class TableEgresso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaEgressoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaEgressoMouseClicked
-        editOrDeleteEgresso p = new editOrDeleteEgresso();
+        int selectedRow = TabelaEgresso.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TabelaEgresso.getModel();
+        String cpf = model.getValueAt(selectedRow, 2).toString();
+        editOrDeleteEgresso p = new editOrDeleteEgresso(cpf);
         p.setVisible(true);
     }//GEN-LAST:event_TabelaEgressoMouseClicked
 
